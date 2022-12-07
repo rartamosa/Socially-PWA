@@ -1,13 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 
-import SignIn from "./components/SignIn";
+import Sign from "./pages/Sign";
 import Main from "./pages/Main";
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/signin" element={<SignIn />} />
+      <Route path="/signin" element={<Sign />} />
       <Route path="/" element={<Main />} />
     </Routes>
   );

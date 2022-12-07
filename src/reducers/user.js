@@ -5,7 +5,11 @@ const user = createSlice({
   initialState: {
     login: "",
   },
-  reducers: {},
+  reducers: {
+    logIn: (store, action) => {
+      store.login = action.payload;
+    },
+  },
 });
 
 export default user;
