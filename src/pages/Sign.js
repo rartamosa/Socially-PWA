@@ -18,10 +18,10 @@ const SignIn = () => {
     }
   }, [storedLogin]);
 
-  const onFormSubmit = () => {
+  const onFormSubmit = (event) => {
+    event.preventDefault();
     const submittedLogin = userLogin;
     dispatch(user.actions.logIn(submittedLogin));
-    navigate("/");
   };
 
   const signupToggle = () => {

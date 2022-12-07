@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, Navigate } from "react-router";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 
+import Feed from "../components/Feed";
 import Messages from "../components/Messages";
 import SingleMessage from "../components/SingleMessage";
 import People from "../components/People";
 import SingleUser from "../components/SingleUser";
-import MyProfile from "../components/MyProfile";
-import TemporaryNavigation from "../components/TemporaryNavigation";
-import NotFound from "../components/NotFound";
+import ScreenLayout from "../components/ScreenLayout";
 
 const Main = () => {
   const storedLogin = useSelector((store) => store.user.login);
@@ -23,16 +21,15 @@ const Main = () => {
 
   return (
     <div>
-      Main
-      <TemporaryNavigation />
       <Routes>
-        <Route path="/messages" element={<Messages />} />
-        <Route path="/messages/:userName" element={<SingleMessage />} />
-        <Route path="/people" element={<People />} />
-        <Route path="/people/:userName" element={<SingleUser />} />
-        <Route path="/myprofile" element={<MyProfile />} />
-        <Route path="/404" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/404" />} />
+        <Route element={<ScreenLayout />}>
+          <Route index element={<Feed />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="messages/:userName" element={<SingleMessage />} />
+          <Route path="people" element={<People />} />
+          <Route path="people/:userName" element={<SingleUser />} />
+          <Route path="myprofile" element={<SingleUser />} />
+        </Route>
       </Routes>
     </div>
   );

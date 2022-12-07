@@ -9,6 +9,9 @@ const user = createSlice({
     logIn: (store, action) => {
       store.login = action.payload;
     },
+    // logOut: (store, action) => {
+    //   store.login = action.payload;
+    // },
   },
 });
 
