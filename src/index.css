@@ -16,6 +16,7 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 34px 25px 42px 25px;
 }
 
 .screen-layout_back-arrow {
@@ -38,4 +39,106 @@ code {
   width: 24px;
   height: 24px;
   background-repeat: no-repeat;
+}
+
+.screen-layout__title {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 38px;
+}
+
+/* Single User */
+.single-user {
+  margin: 0 24px;
+}
+
+.single-user__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 42px 0;
+}
+
+.single-user__profile-picture {
+  background-image: url(https://i1.sndcdn.com/avatars-2YxylsxlqHnbV3SL-opz3ZQ-t500x500.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 89px;
+  height: 89px;
+  filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25));
+  border-radius: 35px;
+  transform: rotate(+45deg);
+}
+
+.single-user__profile-picture_border {
+  border: 1px solid #000000;
+  transform: rotate(-45deg);
+  box-sizing: border-box;
+  border-radius: 35px;
+  width: fit-content;
+}
+
+.single-user__profile-data_name {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 38px;
+  margin-bottom: 4px;
+}
+
+.single-user__profile-data_login {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  margin: 0 0 18px 0;
+  color: #4e4e4e;
+}
+
+.single-user__profile_button {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-size: 12.8px;
+  line-height: 19px;
+  color: #656565;
+  border: none;
+  background-color: transparent;
+}
+
+.single-user__profile-data {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 45px;
+}
+
+.single-user__profile-data_title {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0 0 6px 0;
+}
+
+.single-user__profile-data_subcontainer {
+  text-align: center;
+}
+
+.single-user__profile-data_number {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 38px;
+}
+
+.single-user__photo-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  /* overflow-y: auto; */
+}
+
+.single-user__photo {
+  background-image: url(https://pm1.narvii.com/6599/d9d78d1…_hq.jpg);
+  width: 156px;
+  height: 138px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 19px;
+  background-position: center;
 }

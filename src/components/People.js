@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const People = () => {
   return (
-    <>
-      <div>All people</div>
+    <div>
+      <h2 className="screen-layout__title">People</h2>
       {/* <Link to={`/people/${userName}`} /> */}
-    </>
+    </div>
   );
 };
 

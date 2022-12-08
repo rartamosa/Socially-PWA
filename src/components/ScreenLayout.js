@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { BottomNavigation } from "@mui/material";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -11,11 +11,12 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import user from "../reducers/user";
+import Feed from "./Feed";
+import Messages from "./Messages";
 
 const ScreenLayout = () => {
   const navigate = useNavigate();
   const storedLogin = useSelector((store) => store.user.login);
-  const [userToLogOut, setUserToLogOut] = useState(storedLogin);
   const dispatch = useDispatch();
 
   const goToPreviousScreen = () => {
@@ -23,8 +24,7 @@ const ScreenLayout = () => {
   };
 
   const loggingOut = () => {
-    setUserToLogOut("");
-    dispatch(user.actions.logIn(userToLogOut));
+    dispatch(user.actions.logIn(""));
   };
 
   return (
@@ -50,19 +50,27 @@ const ScreenLayout = () => {
           <BottomNavigationAction
             // icon={<img src="./public/assets/feed_icon.png" />}
             icon={<HomeIcon />}
+            component={Link}
+            to="/"
           />
-          <BottomNavigationAction icon={<ChatBubbleOutlineIcon />} />
+          <BottomNavigationAction
+            icon={<ChatBubbleOutlineIcon />}
+            component={Link}
+            to="/messages"
+          />
           <BottomNavigationAction icon={<AddCircleOutlineIcon />} />
-          <BottomNavigationAction l icon={<PeopleOutlineIcon />} />
-          <BottomNavigationAction icon={<AccountCircleIcon />} />
+          <BottomNavigationAction
+            icon={<PeopleOutlineIcon />}
+            component={Link}
+            to="/people"
+          />
+          <BottomNavigationAction
+            icon={<AccountCircleIcon />}
+            component={Link}
+            to="/myprofile"
+          />
         </BottomNavigation>
       </Paper>
-      <nav>
-        <NavLink to="/">Feed</NavLink>
-        <NavLink to="/messages">Messages</NavLink>
-        <NavLink to="/people">People</NavLink>
-        <NavLink to="/myprofile">My profile</NavLink>
-      </nav>
     </>
   );
 };
