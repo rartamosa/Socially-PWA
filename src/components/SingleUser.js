@@ -37,6 +37,8 @@ const SingleUser = () => {
         <div className="single-user__photo"></div>
         <div className="single-user__photo"></div>
         <div className="single-user__photo"></div>
+        <div className="single-user__photo"></div>
+        <div className="single-user__photo"></div>
       </div>
     </div>
   );

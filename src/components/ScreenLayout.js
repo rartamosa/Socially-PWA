@@ -11,12 +11,10 @@ import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import user from "../reducers/user";
-import Feed from "./Feed";
-import Messages from "./Messages";
 
 const ScreenLayout = () => {
   const navigate = useNavigate();
-  const storedLogin = useSelector((store) => store.user.login);
+  // const storedLogin = useSelector((store) => store.user.login);
   const dispatch = useDispatch();
 
   const goToPreviousScreen = () => {
@@ -29,7 +27,7 @@ const ScreenLayout = () => {
 
   return (
     <>
-      <header>
+      <header className="screen-layout_header">
         <div className="screen-layout_container">
           <div
             onClick={goToPreviousScreen}
@@ -50,6 +48,9 @@ const ScreenLayout = () => {
           <BottomNavigationAction
             // icon={<img src="./public/assets/feed_icon.png" />}
             icon={<HomeIcon />}
+            // className={({ isActive }) =>
+            //   isActive ? "screen-layout__active" : undefined
+            // }
             component={Link}
             to="/"
           />

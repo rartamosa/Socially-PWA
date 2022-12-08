@@ -4,6 +4,7 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -12,6 +13,11 @@ code {
 }
 
 /* Reusable screen styles */
+.screen-layout_header {
+  position: sticky;
+  top: 0;
+}
+
 .screen-layout_container {
   display: flex;
   justify-content: space-between;
@@ -47,9 +53,112 @@ code {
   line-height: 38px;
 }
 
+.screen-layout__active {
+  fill: #7db9b3;
+}
+
+/* Feed */
+.feed-container {
+  margin: 0 24px;
+  padding-bottom: 60px;
+  overflow-x: auto;
+}
+
+.feed-container__box {
+  background-image: url(https://ychef.files.bbci.co.uk/976x549/p06dmw7v.jpg);
+  width: 100%;
+  height: 288px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0px 7px 20px #c4c4c4;
+  border-radius: 20px;
+  padding: 13px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.feed-container__box:last-of-type {
+  margin-bottom: 0;
+}
+
+.feed-continer__data {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-container__avatar {
+  background-image: url(https://i1.sndcdn.com/avatars-2YxylsxlqHnbV3SL-opz3ZQ-t500x500.jpg);
+  width: 35px;
+  height: 35px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.feed-container__name {
+  font-size: 12.8px;
+  line-height: 19px;
+  text-transform: capitalize;
+  color: #fff;
+  margin: 0 0 2px 0px;
+}
+
+.feed-container__time {
+  font-size: 12.8px;
+  line-height: 19px;
+  color: #d8d8d8;
+  margin: 0;
+}
+
+.feed-container__likes-container {
+  background: rgba(229, 229, 229, 0.4);
+  border-radius: 35px;
+  width: fit-content;
+  font-size: 12.8px;
+  line-height: 19px;
+  color: #fff;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 5px 19px;
+  align-self: center;
+}
+
+.feed-container__likes-icon {
+  background-image: url(../public/assets/like_icon.png);
+  width: 16px;
+  height: 15px;
+  background-size: contain;
+  background-position: center;
+  padding: 2.5px;
+  box-sizing: border-box;
+}
+
+/* Messages */
+.messages-container {
+  margin: 0 24px;
+  padding-bottom: 60px;
+  overflow-x: auto;
+}
+
+.messages-container__messages {
+  margin-top: 54px;
+}
+
+.messages-container__single-message {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 33px;
+  padding: 15px;
+}
+
 /* Single User */
 .single-user {
   margin: 0 24px;
+  overflow-x: auto;
+  padding-bottom: 60px;
 }
 
 .single-user__container {
@@ -57,6 +166,13 @@ code {
   flex-direction: column;
   align-items: center;
   margin: 42px 0;
+}
+
+.feed-container__data-container {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  align-items: center;
 }
 
 .single-user__profile-picture {
@@ -130,11 +246,10 @@ code {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  /* overflow-y: auto; */
 }
 
 .single-user__photo {
-  background-image: url(https://pm1.narvii.com/6599/d9d78d1…_hq.jpg);
+  background-image: url(https://resizing.flixster.com/8DUmZAreHkhvV2ARGjPfH9ehlks=/fit-in/1152x864/v2/https://flxt.tmsimg.com/assets/p14459143_e_h9_aa.jpg);
   width: 156px;
   height: 138px;
   background-repeat: no-repeat;
