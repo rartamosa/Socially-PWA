@@ -4,7 +4,7 @@ body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 code {
@@ -22,7 +22,8 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 34px 25px 42px 25px;
+  padding: 34px 25px 42px 25px;
+  background-color: transparent;
 }
 
 .screen-layout_back-arrow {
@@ -61,7 +62,15 @@ code {
 .feed-container {
   margin: 0 24px;
   padding-bottom: 60px;
-  overflow-x: auto;
+  overflow-y: auto;
+  height: calc(100vh - 132px);
+  box-sizing: border-box;
+}
+
+.screen-layout__background_feed {
+  background-image: url(../public/assets/feed_background.png);
+  background-position: 104% 93%;
+  background-repeat: no-repeat;
 }
 
 .feed-container__box {

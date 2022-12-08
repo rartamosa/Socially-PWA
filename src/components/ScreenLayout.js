@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { NavLink, Outlet, useNavigate, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { BottomNavigation } from "@mui/material";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
@@ -14,8 +14,8 @@ import user from "../reducers/user";
 
 const ScreenLayout = () => {
   const navigate = useNavigate();
-  // const storedLogin = useSelector((store) => store.user.login);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const goToPreviousScreen = () => {
     navigate(-1);
@@ -25,8 +25,28 @@ const ScreenLayout = () => {
     dispatch(user.actions.logIn(""));
   };
 
+  const generateBackgroundClassName = () => {
+    if (location.pathname === "/") {
+      return "screen-layout__background_feed";
+    }
+  };
+
+  const generateIconColor = (icon) => {
+    if (location.pathname === "/" && icon === "feed") {
+      return "#7DB9B3";
+    } else if (location.pathname === "/messages" && icon === "messages") {
+      return "#7DB9B3";
+    } else if (location.pathname === "/people" && icon === "people") {
+      return "#7DB9B3";
+    } else if (location.pathname === "/myprofile" && icon === "myprofile") {
+      return "#7DB9B3";
+    } else {
+      return "#000";
+    }
+  };
+
   return (
-    <>
+    <div className={generateBackgroundClassName()}>
       <header className="screen-layout_header">
         <div className="screen-layout_container">
           <div
@@ -46,8 +66,7 @@ const ScreenLayout = () => {
       >
         <BottomNavigation>
           <BottomNavigationAction
-            // icon={<img src="./public/assets/feed_icon.png" />}
-            icon={<HomeIcon />}
+            icon={<HomeIcon htmlColor={generateIconColor("feed")} />}
             // className={({ isActive }) =>
             //   isActive ? "screen-layout__active" : undefined
             // }
@@ -55,24 +74,30 @@ const ScreenLayout = () => {
             to="/"
           />
           <BottomNavigationAction
-            icon={<ChatBubbleOutlineIcon />}
+            icon={
+              <ChatBubbleOutlineIcon
+                htmlColor={generateIconColor("messages")}
+              />
+            }
             component={Link}
             to="/messages"
           />
           <BottomNavigationAction icon={<AddCircleOutlineIcon />} />
           <BottomNavigationAction
-            icon={<PeopleOutlineIcon />}
+            icon={<PeopleOutlineIcon htmlColor={generateIconColor("people")} />}
             component={Link}
             to="/people"
           />
           <BottomNavigationAction
-            icon={<AccountCircleIcon />}
+            icon={
+              <AccountCircleIcon htmlColor={generateIconColor("myprofile")} />
+            }
             component={Link}
             to="/myprofile"
           />
         </BottomNavigation>
       </Paper>
-    </>
+    </div>
   );
 };
 

@@ -20,18 +20,16 @@ const Main = () => {
   }, [storedLogin]);
 
   return (
-    <div>
-      <Routes>
-        <Route element={<ScreenLayout />}>
-          <Route index element={<Feed />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="messages/:userName" element={<SingleMessage />} />
-          <Route path="people" element={<People />} />
-          <Route path="people/:userName" element={<SingleUser />} />
-          <Route path="myprofile" element={<SingleUser />} />
-        </Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route element={<ScreenLayout />}>
+        <Route index element={<Feed />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="messages/:userName" element={<SingleMessage />} />
+        <Route path="people" element={<People />} />
+        <Route path="people/:userName" element={<SingleUser />} />
+        <Route path="myprofile" element={<SingleUser />} />
+      </Route>
+    </Routes>
   );
 };
 
