@@ -30,6 +30,10 @@ const ScreenLayout = () => {
       return "screen-layout__background_feed";
     } else if (location.pathname === "/messages") {
       return "screen-layout__background_messages";
+    } else if (location.pathname === "/people") {
+      return "screen-layout__background_people";
+    } else if (location.pathname === "/myprofile") {
+      return "screen-layout__background_myprofile";
     }
   };
 
@@ -69,9 +73,6 @@ const ScreenLayout = () => {
         <BottomNavigation>
           <BottomNavigationAction
             icon={<HomeIcon htmlColor={generateIconColor("feed")} />}
-            // className={({ isActive }) =>
-            //   isActive ? "screen-layout__active" : undefined
-            // }
             component={Link}
             to="/"
           />
@@ -84,7 +85,11 @@ const ScreenLayout = () => {
             component={Link}
             to="/messages"
           />
-          <BottomNavigationAction icon={<AddCircleOutlineIcon />} />
+          <BottomNavigationAction
+            icon={<AddCircleOutlineIcon />}
+            component={Link}
+            to="/add"
+          />
           <BottomNavigationAction
             icon={<PeopleOutlineIcon htmlColor={generateIconColor("people")} />}
             component={Link}

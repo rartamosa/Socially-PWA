@@ -5,9 +5,9 @@ const SingleUser = () => {
   const { userName } = useParams();
 
   return (
-    <div className="single-user">
+    <div className="screen-layout__screen">
       <div className="single-user__container">
-        <div className="single-user__profile-picture_container">
+        <div>
           <div className="single-user__profile-picture_border">
             <div className="single-user__profile-picture_box">
               <div className="single-user__profile-picture"></div>

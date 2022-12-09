@@ -2,7 +2,7 @@ import React from "react";
 
 const Feed = () => {
   return (
-    <div className="feed-container">
+    <div className="screen-layout__screen">
       <h2 className="screen-layout__title">Feed</h2>
       <div className="feed-container__box">
         <div className="feed-continer__data">

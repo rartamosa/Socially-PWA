@@ -7,6 +7,7 @@ import Messages from "../components/Messages";
 import SingleMessage from "../components/SingleMessage";
 import People from "../components/People";
 import SingleUser from "../components/SingleUser";
+import Add from "../components/Add";
 import ScreenLayout from "../components/ScreenLayout";
 
 const Main = () => {
@@ -25,6 +26,7 @@ const Main = () => {
         <Route index element={<Feed />} />
         <Route path="messages" element={<Messages />} />
         <Route path="messages/:userName" element={<SingleMessage />} />
+        <Route path="add" element={<Add />} />
         <Route path="people" element={<People />} />
         <Route path="people/:userName" element={<SingleUser />} />
         <Route path="myprofile" element={<SingleUser />} />
