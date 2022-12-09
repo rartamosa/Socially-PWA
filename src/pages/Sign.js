@@ -8,15 +8,15 @@ const SignIn = () => {
   const [userLogin, setUserLogin] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [mode, setMode] = useState("login");
-  const storedLogin = useSelector((store) => store.user.login);
+  const storedToken = useSelector((store) => store.user.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (storedLogin) {
+    if (storedToken) {
       navigate("/");
     }
-  }, [storedLogin]);
+  }, [storedToken]);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -33,11 +33,13 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <p>Welcome to</p>
-      <h2>Socially</h2>
+    <div className="sign-container">
       <div>
-        <form onSubmit={onFormSubmit}>
+        <p className="sign-container__welcome">Welcome to</p>
+        <h2 className="sign-container__header">Socially</h2>
+      </div>
+      <div className="sign-container__form-container">
+        <form onSubmit={onFormSubmit} className="sign-container__form">
           <input
             type="text"
             value={userLogin}
@@ -50,18 +52,35 @@ const SignIn = () => {
             onChange={(event) => setUserPassword(event.target.value)}
             placeholder="Password"
           />
-          {mode === "login" ? (
-            <button type="submit">Login</button>
-          ) : (
-            <button type="submit">Register</button>
-          )}
+          <div className="add__button-border sign-container__button-border">
+            {mode === "login" ? (
+              <button
+                type="submit"
+                className="add__button sign-container__login-button"
+              >
+                Login
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="add__button sign-container__register-button"
+              >
+                Register
+              </button>
+            )}
+          </div>
         </form>
-        {mode === "login" ? (
-          <button onClick={signupToggle}>Or sign up</button>
-        ) : (
-          <button onClick={loginToggle}>Or sign in</button>
-        )}
       </div>
+
+      {mode === "login" ? (
+        <button onClick={signupToggle} className="sign-container__toggle">
+          Or sign up
+        </button>
+      ) : (
+        <button onClick={loginToggle} className="sign-container__toggle">
+          Or sign in
+        </button>
+      )}
     </div>
   );
 };

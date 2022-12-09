@@ -103,6 +103,88 @@ code {
   font-size: 12.8px;
   line-height: 19px;
 }
+
+/* _____________________________________________________________________ */
+/* Sign in/up */
+.sign-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../public/assets/feed-people_background.png);
+  background-repeat: no-repeat;
+  background-position: 105% -50%;
+  gap: 47px;
+}
+
+.sign-container__welcome {
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4e4e4e;
+  text-align: center;
+}
+
+.sign-container__header {
+  margin: 0;
+  font-size: 39px;
+  line-height: 58px;
+  text-align: center;
+}
+
+.sign-container__form-container {
+  width: -webkit-fill-available;
+  margin: 0 24px;
+}
+
+.sign-container__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-container__form input {
+  font-family: "Poppins";
+  font-size: 12.8px;
+  line-height: 19px;
+  color: #656565;
+  box-shadow: 0px 4px 25px rgb(0 0 0 / 10%);
+  border-radius: 39px;
+  padding: 30px 25px;
+  border: none;
+}
+
+.sign-container__form input:first-of-type {
+  margin-bottom: 15px;
+}
+
+.sign-container__form input:last-of-type {
+  margin-bottom: 20px;
+}
+
+.sign-container__button-border {
+  align-self: center;
+}
+
+.sign-container__register-button {
+  left: -7% !important;
+}
+
+.sign-container__login-button {
+  left: 10% !important;
+  top: 30% !important;
+}
+
+.sign-container__toggle {
+  font-family: "Poppins";
+  font-size: 16px;
+  line-height: 24px;
+  color: #4e4e4e;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
 /* _____________________________________________________________________ */
 /* Feed */
 .screen-layout__background_feed {
@@ -245,7 +327,8 @@ code {
   display: block;
   width: 100%;
   height: 288px;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
 }
 
 .add__button-container {
