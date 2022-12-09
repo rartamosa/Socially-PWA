@@ -28,6 +28,8 @@ const ScreenLayout = () => {
   const generateBackgroundClassName = () => {
     if (location.pathname === "/") {
       return "screen-layout__background_feed";
+    } else if (location.pathname === "/messages") {
+      return "screen-layout__background_messages";
     }
   };
 

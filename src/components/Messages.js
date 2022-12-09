@@ -7,10 +7,12 @@ const Messages = () => {
       <h2 className="screen-layout__title">Messages</h2>
       <div className="messages-container__messages">
         <div className="messages-container__single-message">
-          <div>img</div>
+          <div className="message-container__user-avatar_border">
+            <div className="messages-container__user-avatar"></div>
+          </div>
           <div>
-            <p>name</p>
-            <span>message</span>
+            <p className="messages-container__user-name">name</p>
+            <span className="messages-container__user-message">message</span>
           </div>
         </div>
       </div>
