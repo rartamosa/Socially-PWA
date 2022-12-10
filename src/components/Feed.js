@@ -11,8 +11,10 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getFeed(accessToken));
-  }, []);
+    if (accessToken) {
+      dispatch(getFeed(accessToken));
+    }
+  }, [accessToken]);
 
   return (
     <div className="screen-layout__screen">

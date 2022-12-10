@@ -15,6 +15,8 @@ import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
 
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
 const reducer = combineReducers({
   user: user.reducer,
   feed: feed.reducer,
@@ -24,12 +26,47 @@ const reducer = combineReducers({
 
 const store = configureStore({ reducer });
 
+const theme = createTheme({
+  components: {
+    // MuiButton: {
+    //   styleOverrides: {
+    //     root: {
+    //       // style
+    //     },
+    //   },
+    // },
+    MuiBottomNavigation: {
+      styleOverrides: {
+        root: {
+          padding: "0px 45px 45px 45px",
+          "& .MuiButtonBase-root": {
+            minWidth: "57px",
+          },
+          "& .MuiButtonBase-root:nth-child(3)": {
+            backgroundColor: "#000",
+            color: "#fff",
+            borderRadius: "23px",
+            position: "relative",
+            transform: "rotate(45deg)",
+            bottom: "15px",
+            "& .MuiSvgIcon-root": {
+              transform: "rotate(-45deg)",
+            },
+          },
+        },
+      },
+    },
+  },
+});
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </BrowserRouter>
     </Provider>
   </React.StrictMode>
