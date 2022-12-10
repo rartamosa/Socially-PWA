@@ -22,7 +22,7 @@ const ScreenLayout = () => {
   };
 
   const loggingOut = () => {
-    dispatch(user.actions.logIn(""));
+    dispatch(user.actions.setAccessToken(""));
   };
 
   const generateBackgroundClassName = () => {

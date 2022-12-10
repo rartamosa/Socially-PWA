@@ -11,14 +11,14 @@ import Add from "../components/Add";
 import ScreenLayout from "../components/ScreenLayout";
 
 const Main = () => {
-  const storedToken = useSelector((store) => store.user.token);
+  const accessToken = useSelector((store) => store.user.accessToken);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!storedToken) {
+    if (!accessToken) {
       navigate("/signin");
     }
-  }, [storedToken]);
+  }, [accessToken]);
 
   return (
     <Routes>

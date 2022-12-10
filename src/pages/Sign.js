@@ -2,26 +2,28 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
-import user from "../reducers/user";
+import { userLogin } from "../reducers/user";
 
 const SignIn = () => {
-  const [userLogin, setUserLogin] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [mode, setMode] = useState("login");
-  const storedToken = useSelector((store) => store.user.token);
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [mode, setMode] = useState("signin");
+
+  const accessToken = useSelector((store) => store.user.accessToken);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (storedToken) {
+    if (accessToken) {
       navigate("/");
     }
-  }, [storedToken]);
+  }, [accessToken]);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    const submittedLogin = userLogin;
-    dispatch(user.actions.logIn(submittedLogin));
+    dispatch(userLogin(login, password, mode));
   };
 
   const signupToggle = () => {
@@ -29,7 +31,7 @@ const SignIn = () => {
   };
 
   const loginToggle = () => {
-    setMode("login");
+    setMode("signin");
   };
 
   return (
@@ -42,18 +44,18 @@ const SignIn = () => {
         <form onSubmit={onFormSubmit} className="sign-container__form">
           <input
             type="text"
-            value={userLogin}
-            onChange={(event) => setUserLogin(event.target.value)}
+            value={login}
+            onChange={(event) => setLogin(event.target.value)}
             placeholder="Login"
           />
           <input
             type="password"
-            value={userPassword}
-            onChange={(event) => setUserPassword(event.target.value)}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
             placeholder="Password"
           />
           <div className="add__button-border sign-container__button-border">
-            {mode === "login" ? (
+            {mode === "signin" ? (
               <button
                 type="submit"
                 className="add__button sign-container__login-button"
@@ -72,7 +74,7 @@ const SignIn = () => {
         </form>
       </div>
 
-      {mode === "login" ? (
+      {mode === "signin" ? (
         <button onClick={signupToggle} className="sign-container__toggle">
           Or sign up
         </button>

@@ -1,69 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getFeed } from "../reducers/feed";
+
+import FeedElement from "./FeedElement";
 
 const Feed = () => {
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const feedList = useSelector((store) => store.feed.list);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getFeed(accessToken));
+  }, []);
+
   return (
     <div className="screen-layout__screen">
       <h2 className="screen-layout__title">Feed</h2>
-      <div className="feed-container__box">
-        <div className="feed-continer__data">
-          <div className="feed-container__data-container">
-            <div className="feed-container__avatar"></div>
-            <div className="feed-container__time-name">
-              <p className="feed-container__name">name</p>
-              <p className="feed-container__time">timing</p>
-            </div>
-          </div>
-        </div>
-        <div className="feed-container__likes-container">
-          <div className="feed-container__likes-icon"></div>
-          <span>12</span>
-        </div>
-      </div>
-      <div className="feed-container__box">
-        <div className="feed-continer__data">
-          <div className="feed-container__data-container">
-            <div className="feed-container__avatar"></div>
-            <div className="feed-container__time-name">
-              <p className="feed-container__name">name</p>
-              <p className="feed-container__time">timing</p>
-            </div>
-          </div>
-        </div>
-        <div className="feed-container__likes-container">
-          <div className="feed-container__likes-icon"></div>
-          <span>12</span>
-        </div>
-      </div>
-      <div className="feed-container__box">
-        <div className="feed-continer__data">
-          <div className="feed-container__data-container">
-            <div className="feed-container__avatar"></div>
-            <div className="feed-container__time-name">
-              <p className="feed-container__name">name</p>
-              <p className="feed-container__time">timing</p>
-            </div>
-          </div>
-        </div>
-        <div className="feed-container__likes-container">
-          <div className="feed-container__likes-icon"></div>
-          <span>12</span>
-        </div>
-      </div>
-      <div className="feed-container__box">
-        <div className="feed-continer__data">
-          <div className="feed-container__data-container">
-            <div className="feed-container__avatar"></div>
-            <div className="feed-container__time-name">
-              <p className="feed-container__name">name</p>
-              <p className="feed-container__time">timing</p>
-            </div>
-          </div>
-        </div>
-        <div className="feed-container__likes-container">
-          <div className="feed-container__likes-icon"></div>
-          <span>12</span>
-        </div>
-      </div>
+      {feedList.map((feedElement) => (
+        <FeedElement
+          avatar={feedElement.user.image}
+          userName={feedElement.user.name}
+          createdAt={feedElement.createdAt}
+          imgURL={feedElement.image}
+          likes={feedElement.likes}
+        />
+      ))}
     </div>
   );
 };
