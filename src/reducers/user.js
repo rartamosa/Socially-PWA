@@ -9,6 +9,8 @@ const user = createSlice({
     login: "",
     userId: "",
     accessToken: "",
+    userName: "",
+    userAvatar: "",
   },
   reducers: {
     setLogIn: (store, action) => {
@@ -19,6 +21,12 @@ const user = createSlice({
     },
     setAccessToken: (store, action) => {
       store.accessToken = action.payload;
+    },
+    setUserName: (store, action) => {
+      store.userName = action.payload;
+    },
+    setUserAvatar: (store, action) => {
+      store.userAvatar = action.payload;
     },
   },
 });
@@ -44,6 +52,27 @@ export const userLogin = (login, password, mode) => {
           dispatch(user.actions.setLogIn(data.response.login));
           dispatch(user.actions.setUserId(data.response.userId));
           dispatch(user.actions.setAccessToken(data.response.accessToken));
+        });
+      });
+  };
+};
+
+export const getUserData = (accessToken) => {
+  return (dispatch, getState) => {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
+    };
+    fetch(`${BASE_API_URL}/user`, options)
+      .then((res) => res.json())
+      .then((data) => {
+        batch(() => {
+          console.log(data);
+          dispatch(user.actions.setUserName(data.response.name));
+          dispatch(user.actions.setUserAvatar(data.response.image));
         });
       });
   };

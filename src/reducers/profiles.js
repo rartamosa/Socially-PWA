@@ -14,7 +14,7 @@ const profiles = createSlice({
     setFollow: (store, action) => {
       store.list = store.list.map((user) => {
         if (user._id === action.payload._id) {
-          return [action.payload];
+          return action.payload;
         } else {
           return user;
         }
@@ -40,16 +40,16 @@ export const getProfiles = (accessToken) => {
   };
 };
 
-export const followToggle = (userId, accessToken) => {
+export const followToggle = (userId, accessToken, mode) => {
   return (dispatch, getState) => {
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        accessToken: accessToken,
+        Authorization: accessToken,
       },
     };
-    fetch(`${BASE_API_URL}/user/follow/${userId}`, options)
+    fetch(`${BASE_API_URL}/user/${mode}/${userId}`, options)
       .then((res) => res.json())
       .then((data) => dispatch(profiles.actions.setFollow(data.response)));
   };

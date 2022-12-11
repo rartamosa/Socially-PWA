@@ -28,8 +28,8 @@ const Main = () => {
         <Route path="messages/:userName" element={<SingleMessage />} />
         <Route path="add" element={<Add />} />
         <Route path="people" element={<PeopleList />} />
-        <Route path="people/:userName" element={<SingleUser />} />
-        <Route path="myprofile" element={<SingleUser />} />
+        <Route path="people/:userId" element={<SingleUser />} />
+        {/* <Route path="myprofile" element={<SingleUser />} /> */}
       </Route>
     </Routes>
   );

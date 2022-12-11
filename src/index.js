@@ -31,7 +31,7 @@ const theme = createTheme({
     MuiBottomNavigation: {
       styleOverrides: {
         root: {
-          padding: "0px 45px",
+          padding: "0px 45px 20px 45px;",
           "& .MuiButtonBase-root": {
             minWidth: "57px",
           },

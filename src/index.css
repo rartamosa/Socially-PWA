@@ -46,7 +46,7 @@ code {
 
 .screen-layout__screen {
   margin: 0 24px;
-  padding-bottom: 60px;
+  padding-bottom: 85px;
   overflow-y: auto;
   height: calc(100vh - 132px);
   box-sizing: border-box;
@@ -333,6 +333,11 @@ code {
   justify-content: space-between;
 }
 
+.people-container__single-user a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .people-container__user-data {
   display: flex;
   align-items: center;
@@ -377,7 +382,7 @@ code {
 }
 
 .single-user__profile-picture {
-  background-image: url(https://i1.sndcdn.com/avatars-2YxylsxlqHnbV3SL-opz3ZQ-t500x500.jpg);
+  /* background-image: url(https://i1.sndcdn.com/avatars-2YxylsxlqHnbV3SL-opz3ZQ-t500x500.jpg); */
   filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25));
   width: 120%;
   height: 120%;
@@ -412,6 +417,7 @@ code {
   font-size: 25px;
   line-height: 38px;
   margin-bottom: 4px;
+  text-align: center;
 }
 
 .single-user__profile-data_login {
@@ -461,7 +467,7 @@ code {
 }
 
 .single-user__photo {
-  background-image: url(https://resizing.flixster.com/8DUmZAreHkhvV2ARGjPfH9ehlks=/fit-in/1152x864/v2/https://flxt.tmsimg.com/assets/p14459143_e_h9_aa.jpg);
+  /* background-image: url(https://resizing.flixster.com/8DUmZAreHkhvV2ARGjPfH9ehlks=/fit-in/1152x864/v2/https://flxt.tmsimg.com/assets/p14459143_e_h9_aa.jpg); */
   width: 156px;
   height: 138px;
   background-repeat: no-repeat;

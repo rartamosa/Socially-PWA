@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useNavigate, Link, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BottomNavigation } from "@mui/material";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
@@ -18,6 +18,7 @@ import { SecondaryButton } from "../styled-components/Buttons";
 import user from "../reducers/user";
 
 const ScreenLayout = () => {
+  const userId = useSelector((store) => store.user.userId);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -47,9 +48,12 @@ const ScreenLayout = () => {
       return "#7DB9B3";
     } else if (location.pathname === "/messages" && icon === "messages") {
       return "#7DB9B3";
-    } else if (location.pathname === "/people" && icon === "people") {
+    } else if (
+      (location.pathname === "/people" && icon === "people") ||
+      (location.pathname !== `/people/${userId}` && icon === "people")
+    ) {
       return "#7DB9B3";
-    } else if (location.pathname === "/myprofile" && icon === "myprofile") {
+    } else if (location.pathname === `/people/${userId}` && icon === "userId") {
       return "#7DB9B3";
     } else {
       return "#000";
@@ -104,11 +108,9 @@ const ScreenLayout = () => {
             to="/people"
           />
           <BottomNavigationAction
-            icon={
-              <AccountCircleIcon htmlColor={generateIconColor("myprofile")} />
-            }
+            icon={<AccountCircleIcon htmlColor={generateIconColor("userId")} />}
             component={Link}
-            to="/myprofile"
+            to={`/people/${userId}`}
           />
         </BottomNavigation>
       </Paper>

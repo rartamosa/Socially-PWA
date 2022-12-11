@@ -14,27 +14,29 @@ const Add = () => {
   return (
     <div className="screen-layout__screen">
       <div className="add__form-input">
-        <div className="add__img-preview_container">
-          <label htmlFor="image">
-            <input
-              type="file"
-              onChange={onImageChange}
-              name="image"
-              id="image"
-              accept="image/*"
-            />
-            {image ? (
-              <img src={image} alt="Image" className="add__uploaded-img" />
-            ) : (
-              <img src="/assets/upload_placeholder.png" alt="Image" />
-            )}
-          </label>
-        </div>
-        <div className="add__button-container">
-          <PrimaryButton>
-            <span>Upload</span>
-          </PrimaryButton>
-        </div>
+        <form>
+          <div className="add__img-preview_container">
+            <label htmlFor="image">
+              <input
+                type="file"
+                onChange={onImageChange}
+                name="image"
+                id="image"
+                accept="image/*"
+              />
+              {image ? (
+                <img src={image} alt="Image" className="add__uploaded-img" />
+              ) : (
+                <img src="/assets/upload_placeholder.png" alt="Image" />
+              )}
+            </label>
+          </div>
+          <div className="add__button-container">
+            <PrimaryButton type="submit">
+              <span>Upload</span>
+            </PrimaryButton>
+          </div>
+        </form>
       </div>
     </div>
   );
