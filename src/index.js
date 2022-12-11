@@ -28,21 +28,14 @@ const store = configureStore({ reducer });
 
 const theme = createTheme({
   components: {
-    // MuiButton: {
-    //   styleOverrides: {
-    //     root: {
-    //       // style
-    //     },
-    //   },
-    // },
     MuiBottomNavigation: {
       styleOverrides: {
         root: {
-          padding: "0px 45px 45px 45px",
+          padding: "0px 45px",
           "& .MuiButtonBase-root": {
             minWidth: "57px",
           },
-          "& .MuiButtonBase-root:nth-child(3)": {
+          "& .MuiButtonBase-root:nth-of-type(3)": {
             backgroundColor: "#000",
             color: "#fff",
             borderRadius: "23px",
@@ -54,6 +47,23 @@ const theme = createTheme({
             },
           },
         },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          "& .MuiInputBase-input": {
+            backgroundColor: "#fff",
+          },
+          input: {
+            "&::placeholder": {
+              color: "#656565",
+            },
+          },
+        },
+      },
+      defaultProps: {
+        disableUnderline: true,
       },
     },
   },

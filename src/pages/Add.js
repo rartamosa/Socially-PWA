@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { PrimaryButton } from "../styled-components/Buttons";
+
 const Add = () => {
   const [image, setImage] = useState(null);
 
@@ -13,7 +15,7 @@ const Add = () => {
     <div className="screen-layout__screen">
       <div className="add__form-input">
         <div className="add__img-preview_container">
-          <label for="image">
+          <label htmlFor="image">
             <input
               type="file"
               onChange={onImageChange}
@@ -29,9 +31,9 @@ const Add = () => {
           </label>
         </div>
         <div className="add__button-container">
-          <div className="add__button-border">
-            <button className="add__button">Upload</button>
-          </div>
+          <PrimaryButton>
+            <span>Upload</span>
+          </PrimaryButton>
         </div>
       </div>
     </div>

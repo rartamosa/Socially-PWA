@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router";
 
-import Feed from "../components/Feed";
-import Messages from "../components/Messages";
-import SingleMessage from "../components/SingleMessage";
-import People from "../components/People";
-import SingleUser from "../components/SingleUser";
-import Add from "../components/Add";
+import Feed from "./Feed";
+import Messages from "./Messages";
+import SingleMessage from "./SingleMessage";
+import PeopleList from "./PeopleList";
+import SingleUser from "./SingleUser";
+import Add from "./Add";
 import ScreenLayout from "../components/ScreenLayout";
 
 const Main = () => {
@@ -27,7 +27,7 @@ const Main = () => {
         <Route path="messages" element={<Messages />} />
         <Route path="messages/:userName" element={<SingleMessage />} />
         <Route path="add" element={<Add />} />
-        <Route path="people" element={<People />} />
+        <Route path="people" element={<PeopleList />} />
         <Route path="people/:userName" element={<SingleUser />} />
         <Route path="myprofile" element={<SingleUser />} />
       </Route>

@@ -4,7 +4,7 @@ import { Navigate } from "react-router";
 
 import Sign from "./pages/Sign";
 import Main from "./pages/Main";
-import NotFound from "./components/NotFound";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (

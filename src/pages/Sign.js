@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { Input } from "@mui/material";
+
+import { PrimaryButton } from "../styled-components/Buttons";
 
 import { userLogin } from "../reducers/user";
 
@@ -42,35 +45,23 @@ const SignIn = () => {
       </div>
       <div className="sign-container__form-container">
         <form onSubmit={onFormSubmit} className="sign-container__form">
-          <input
-            type="text"
+          <Input
             value={login}
-            onChange={(event) => setLogin(event.target.value)}
             placeholder="Login"
+            type="text"
+            onChange={(event) => setLogin(event.target.value)}
           />
-          <input
-            type="password"
+
+          <Input
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
             placeholder="Password"
+            type="password"
+            onChange={(event) => setPassword(event.target.value)}
           />
-          <div className="add__button-border sign-container__button-border">
-            {mode === "signin" ? (
-              <button
-                type="submit"
-                className="add__button sign-container__login-button"
-              >
-                Login
-              </button>
-            ) : (
-              <button
-                type="submit"
-                className="add__button sign-container__register-button"
-              >
-                Register
-              </button>
-            )}
-          </div>
+
+          <PrimaryButton type="submit">
+            <span>{mode === "signin" ? "login" : "register"}</span>
+          </PrimaryButton>
         </form>
       </div>
 

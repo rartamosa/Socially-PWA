@@ -4,11 +4,16 @@ import { useDispatch } from "react-redux";
 import { BottomNavigation } from "@mui/material";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Paper from "@mui/material/Paper";
+
 import HomeIcon from "@mui/icons-material/Home";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+
+import { SecondaryButton } from "../styled-components/Buttons";
 
 import user from "../reducers/user";
 
@@ -55,12 +60,15 @@ const ScreenLayout = () => {
     <div className={generateBackgroundClassName()}>
       <header className="screen-layout_header">
         <div className="screen-layout_container">
-          <div
-            onClick={goToPreviousScreen}
-            className="screen-layout_back-arrow"
-          ></div>
+          <SecondaryButton onClick={goToPreviousScreen}>
+            <ArrowBackIcon />
+          </SecondaryButton>
+
           <p className="screen-layout_logo">Socially</p>
-          <div onClick={loggingOut} className="screen-layout_logout"></div>
+
+          <SecondaryButton onClick={loggingOut}>
+            <PowerSettingsNewIcon />
+          </SecondaryButton>
         </div>
       </header>
 
