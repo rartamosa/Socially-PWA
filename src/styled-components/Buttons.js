@@ -1,4 +1,6 @@
 import { Button } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { styled } from "@mui/material/styles";
 
 export const PrimaryButton = styled(Button)(() => ({
@@ -27,4 +29,14 @@ export const SecondaryButton = styled(Button)(() => ({
   padding: "0",
   color: "#000",
   minWidth: "fit-content",
+}));
+
+export const LikeButton = styled(FavoriteBorderIcon)(() => ({
+  width: "16px",
+  height: "15px",
+}));
+
+export const UnlikeButton = styled(FavoriteIcon)(() => ({
+  width: "16px",
+  height: "15px",
 }));

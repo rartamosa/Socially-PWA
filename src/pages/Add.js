@@ -25,7 +25,7 @@ const Add = () => {
                 accept="image/*"
               />
               {image ? (
-                <img src={image} alt="Image" className="add__uploaded-img" />
+                <img src={image} className="add__uploaded-img" />
               ) : (
                 <img src="/assets/upload_placeholder.png" alt="Image" />
               )}

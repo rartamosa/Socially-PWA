@@ -240,7 +240,7 @@ code {
   align-self: center;
 }
 
-.feed-container__likes-icon {
+/* .feed-container__likes-icon {
   background-image: url(../public/assets/like_icon.png);
   width: 16px;
   height: 15px;
@@ -248,7 +248,7 @@ code {
   background-position: center;
   padding: 2.5px;
   box-sizing: border-box;
-}
+} */
 
 /* _____________________________________________________________________ */
 /* Messages */

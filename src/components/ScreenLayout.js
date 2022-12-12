@@ -50,7 +50,9 @@ const ScreenLayout = () => {
       return "#7DB9B3";
     } else if (
       (location.pathname === "/people" && icon === "people") ||
-      (location.pathname !== `/people/${userId}` && icon === "people")
+      (location.pathname !== `/people/${userId}` &&
+        location.pathname.includes("people") &&
+        icon === "people")
     ) {
       return "#7DB9B3";
     } else if (location.pathname === `/people/${userId}` && icon === "userId") {

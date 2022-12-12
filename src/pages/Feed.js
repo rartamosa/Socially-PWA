@@ -27,6 +27,7 @@ const Feed = () => {
           createdAt={feedElement.createdAt}
           imgURL={feedElement.image}
           likes={feedElement.likes}
+          feedId={feedElement._id}
         />
       ))}
     </div>
