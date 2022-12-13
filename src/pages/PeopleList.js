@@ -16,6 +16,8 @@ const People = () => {
     }
   }, [accessToken]);
 
+  // console.log(peopleList);
+
   return (
     <div className="screen-layout__screen">
       <h2 className="screen-layout__title">People</h2>

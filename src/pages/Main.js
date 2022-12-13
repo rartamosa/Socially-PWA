@@ -25,11 +25,10 @@ const Main = () => {
       <Route element={<ScreenLayout />}>
         <Route index element={<Feed />} />
         <Route path="messages" element={<Messages />} />
-        <Route path="messages/:userName" element={<SingleMessage />} />
+        <Route path="messages/:conversationId" element={<SingleMessage />} />
         <Route path="add" element={<Add />} />
         <Route path="people" element={<PeopleList />} />
         <Route path="people/:userId" element={<SingleUser />} />
-        {/* <Route path="myprofile" element={<SingleUser />} /> */}
       </Route>
     </Routes>
   );

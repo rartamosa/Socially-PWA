@@ -1,22 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getMessages } from "../reducers/conversations";
+
+import MessagesElement from "../components/MessagesElement";
 
 const Messages = () => {
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const messagesList = useSelector((store) => store.conversations.list);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(getMessages(accessToken));
+    }
+  }, [accessToken]);
+
+  // console.log(messagesList);
+
   return (
     <div className="screen-layout__screen">
       <h2 className="screen-layout__title">Messages</h2>
       <div className="messages-container__messages">
-        <div className="screen-layout__single-element">
-          <div className="screen-layout__user-avatar_border">
-            <div className="screen-layout__user-avatar"></div>
-          </div>
-          <div>
-            <p className="screen-layout__user-name">name</p>
-            <span className="messages-container__user-message">message</span>
-          </div>
-        </div>
+        {messagesList.map((message) => (
+          <MessagesElement
+            key={message._id}
+            conversationId={message._id}
+            interlocutorA={message.interlocutors[0]}
+            // interlocutorAAvatar={}
+            interlocutorB={message.interlocutors[1]}
+            // interlocutorBAvatar={}
+            messages={message.messages}
+          />
+        ))}
       </div>
-      {/* <Link to={`/messages/${userName}`} /> */}
     </div>
   );
 };

@@ -54,6 +54,7 @@ const theme = createTheme({
         root: {
           "& .MuiInputBase-input": {
             backgroundColor: "#fff",
+            boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.1)",
           },
           input: {
             "&::placeholder": {

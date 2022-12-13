@@ -240,16 +240,6 @@ code {
   align-self: center;
 }
 
-/* .feed-container__likes-icon {
-  background-image: url(../public/assets/like_icon.png);
-  width: 16px;
-  height: 15px;
-  background-size: contain;
-  background-position: center;
-  padding: 2.5px;
-  box-sizing: border-box;
-} */
-
 /* _____________________________________________________________________ */
 /* Messages */
 .screen-layout__background_messages {
@@ -260,6 +250,11 @@ code {
 
 .messages-container__messages {
   margin-top: 54px;
+}
+
+.messages-container__messages a {
+  text-decoration: none;
+  color: #000;
 }
 
 .messages-container__user-message {
@@ -276,6 +271,15 @@ code {
 
 .messages-container__user-message:first-letter {
   text-transform: capitalize;
+}
+
+/* _____________________________________________________________________ */
+/* Single Message */
+.screen-layout__background_singlemessage {
+  background-image: url(../public/assets/singlemessage_background.png);
+  background-repeat: no-repeat;
+  background-size: calc(100vw - 16px);
+  background-position: 8px 23px;
 }
 
 /* _____________________________________________________________________ */

@@ -40,6 +40,11 @@ const ScreenLayout = () => {
       return "screen-layout__background_people";
     } else if (location.pathname === "/myprofile") {
       return "screen-layout__background_myprofile";
+    } else if (
+      location.pathname.includes("messages") &&
+      location.pathname !== "/messages"
+    ) {
+      return "screen-layout__background_singlemessage";
     }
   };
 
