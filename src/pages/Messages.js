@@ -8,6 +8,7 @@ import MessagesElement from "../components/MessagesElement";
 const Messages = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
   const messagesList = useSelector((store) => store.conversations.list);
+  const userId = useSelector((store) => store.user.userId);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,23 +17,24 @@ const Messages = () => {
     }
   }, [accessToken]);
 
-  // console.log(messagesList);
-
   return (
     <div className="screen-layout__screen">
       <h2 className="screen-layout__title">Messages</h2>
       <div className="messages-container__messages">
-        {messagesList.map((message) => (
-          <MessagesElement
-            key={message._id}
-            conversationId={message._id}
-            interlocutorA={message.interlocutors[0]}
-            // interlocutorAAvatar={}
-            interlocutorB={message.interlocutors[1]}
-            // interlocutorBAvatar={}
-            messages={message.messages}
-          />
-        ))}
+        {messagesList.map((message) => {
+          const interlocutor = message.interlocutors.find(
+            (user) => user._id !== userId
+          );
+          return (
+            <MessagesElement
+              key={message._id}
+              conversationId={message._id}
+              interlocutor={interlocutor.name}
+              interlocutorAvatar={interlocutor.image}
+              messages={message.messages}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -50,6 +50,15 @@ const SingleUser = () => {
           {user.name || "Type your name"}
         </h3>
         <h4 className="single-user__profile-data_login">@{user.login}</h4>
+        {/* 1. button widoczny tylko na profilu innym niz mój */}
+        {/* 2. na buttona dodaje onClick i dipatchuje thunka (robie fetch requesta; pkt 13 z dokumentacji) */}
+        {/* 3. dostane w odpowiedzi konwersację (pustą albo nie w zaleznosci czy mam juz rozmowe z danym userem) */}
+        {/* 4. jesli juz mam konwersacje z danym userem (sprawdzam czy ID konwersacji nie znajduje się 
+          juz w naszym slice conversations) to w drugim then fetcha robimy przekierowanie (navigate 
+          przekazane do thunka jako argument, ktory funkcja dostanie w komponencie; czyli do thunka 
+          przekazujemy callback) */}
+        {/* 5. przekazuje accessToken, ID interlocutora, trzecim argumentem będzie navigate, a 
+          useNavigate będę robiła w SingleUser */}
         <button className="single-user__profile_button">Message</button>
       </div>
       <div className="single-user__profile-data">

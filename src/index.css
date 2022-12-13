@@ -282,6 +282,37 @@ code {
   background-position: 8px 23px;
 }
 
+.single-message__container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 90px);
+  justify-content: space-between;
+}
+
+.single-message__chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.single-message__interlocutorB-message {
+  background-color: #fafafa;
+  padding: 11px 25px;
+  border-radius: 0px 15px 15px 15px;
+  max-width: 70%;
+}
+
+.single-message__interlocutorA-message {
+  background-color: #fafafa;
+  border-radius: 0px 15px 15px 15px;
+  max-width: 70%;
+  align-self: flex-end;
+}
+
+.single-message__form {
+  position: relative;
+}
+
 /* _____________________________________________________________________ */
 /* Add */
 .add__img-preview_container {

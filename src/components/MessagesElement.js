@@ -1,17 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import { useParams } from "react-router";
-
 const MessagesElement = ({
   conversationId,
-  interlocutorA,
-  interlocutorB,
+  interlocutor,
+  interlocutorAvatar,
   messages,
 }) => {
   const messageToShow = messages[messages.length - 1].message;
-
-  //   const { conversationId } = useParams();
 
   return (
     <Link to={`/messages/${conversationId}`}>
@@ -19,11 +15,11 @@ const MessagesElement = ({
         <div className="screen-layout__user-avatar_border">
           <div
             className="screen-layout__user-avatar"
-            // style={{backgroundImage: `url(${})`,}}
+            style={{ backgroundImage: `url(${interlocutorAvatar})` }}
           ></div>
         </div>
         <div>
-          <p className="screen-layout__user-name">{interlocutorB}</p>
+          <p className="screen-layout__user-name">{interlocutor}</p>
           <span className="messages-container__user-message">
             {messageToShow}
           </span>
