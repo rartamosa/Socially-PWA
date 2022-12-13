@@ -1,20 +1,31 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
+import { postFeed } from "../reducers/feed";
 import { PrimaryButton } from "../styled-components/Buttons";
 
 const Add = () => {
   const [image, setImage] = useState(null);
+  const accessToken = useSelector((store) => store.user.accessToken);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
+      setImage(event.target.files[0]);
     }
+  };
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(postFeed(accessToken, image, navigate));
   };
 
   return (
     <div className="screen-layout__screen">
       <div className="add__form-input">
-        <form>
+        <form onSubmit={onFormSubmit}>
           <div className="add__img-preview_container">
             <label htmlFor="image">
               <input
