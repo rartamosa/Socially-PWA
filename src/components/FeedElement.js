@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { LikeButton, UnlikeButton } from "../styled-components/Buttons";
 
-import { likeFeed } from "../reducers/feed";
+import { toggleLikeFeed } from "../reducers/feed";
 
 const FeedElement = ({
   avatar,
@@ -15,10 +15,11 @@ const FeedElement = ({
   feedId,
 }) => {
   const accessToken = useSelector((store) => store.user.accessToken);
+  const loggedUserId = useSelector((store) => store.user.userId);
   const dispatch = useDispatch();
 
-  const likeUserFeed = (accessToken, feedId) => {
-    dispatch(likeFeed(accessToken, feedId));
+  const toggleLikes = (accessToken, feedId) => {
+    dispatch(toggleLikeFeed(accessToken, feedId));
   };
 
   return (
@@ -41,13 +42,15 @@ const FeedElement = ({
         </div>
       </div>
       <div
-        onClick={() => likeUserFeed(accessToken, feedId)}
+        onClick={() => toggleLikes(accessToken, feedId)}
         className="feed-container__likes-container"
       >
-        {/* warunkowo renderować odpowiedni button */}
-        <LikeButton />
-        {/* <UnlikeButton /> */}
-        <span>{likes}</span>
+        {likes.includes(loggedUserId) || likes.length < 0 ? (
+          <UnlikeButton />
+        ) : (
+          <LikeButton />
+        )}
+        <span>{likes.length}</span>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const feed = createSlice({
   },
   reducers: {
     setFeed: (store, action) => {
-      store.list = action.payload;
+      store.list = action.payload.sort((a, b) => b.createdAt - a.createdAt);
     },
     setLikes: (store, action) => {
       store.list = store.list.map((feed) => {
@@ -40,7 +40,7 @@ export const getFeed = (accessToken) => {
   };
 };
 
-export const likeFeed = (accessToken, feedId) => {
+export const toggleLikeFeed = (accessToken, feedId) => {
   return (dispatch, getState) => {
     const options = {
       method: "PUT",

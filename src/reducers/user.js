@@ -70,7 +70,7 @@ export const getUserData = (accessToken) => {
       .then((res) => res.json())
       .then((data) => {
         batch(() => {
-          console.log(data);
+          // console.log(data);
           dispatch(user.actions.setUserName(data.response.name));
           dispatch(user.actions.setUserAvatar(data.response.image));
         });

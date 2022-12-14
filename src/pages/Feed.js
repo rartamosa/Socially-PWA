@@ -8,7 +8,6 @@ import FeedElement from "../components/FeedElement";
 const Feed = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
   const feedList = useSelector((store) => store.feed.list);
-  const reversedFeedList = [...feedList].reverse();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +19,7 @@ const Feed = () => {
   return (
     <div className="screen-layout__screen">
       <h2 className="screen-layout__title">Feed</h2>
-      {reversedFeedList.map((feedElement) => (
+      {feedList.map((feedElement) => (
         <FeedElement
           key={feedElement._id}
           avatar={feedElement.user.image}

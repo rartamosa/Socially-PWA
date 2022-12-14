@@ -257,7 +257,8 @@ code {
   color: #000;
 }
 
-.messages-container__user-message {
+.messages-container__user-message,
+.messages-container__message-placeholder {
   font-size: 12.8px;
   line-height: 19px;
   color: #656565;
@@ -267,6 +268,10 @@ code {
   -webkit-line-clamp: 2;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+}
+
+.messages-container__message-placeholder {
+  font-style: italic;
 }
 
 .messages-container__user-message:first-letter {
@@ -479,6 +484,10 @@ code {
   color: #656565;
   border: none;
   background-color: transparent;
+}
+
+.single-user__profile_button-hidden {
+  display: none;
 }
 
 .single-user__profile-data {

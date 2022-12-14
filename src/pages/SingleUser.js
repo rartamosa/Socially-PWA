@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getUserData } from "../reducers/user";
 import { BASE_API_URL } from "../utils/commons";
+import { sendMessageFromProfile } from "../reducers/conversations";
 
 const SingleUser = () => {
   const { userId } = useParams();
+  const loggedUserId = useSelector((store) => store.user.userId);
   const accessToken = useSelector((store) => store.user.accessToken);
   const [user, setUser] = useState({});
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (accessToken) {
@@ -33,6 +37,10 @@ const SingleUser = () => {
     }
   }, [userId]);
 
+  const sendMessage = () => {
+    dispatch(sendMessageFromProfile(accessToken, userId, navigate));
+  };
+
   return (
     <div className="screen-layout__screen">
       <div className="single-user__container">
@@ -50,16 +58,17 @@ const SingleUser = () => {
           {user.name || "Type your name"}
         </h3>
         <h4 className="single-user__profile-data_login">@{user.login}</h4>
-        {/* 1. button widoczny tylko na profilu innym niz mój */}
-        {/* 2. na buttona dodaje onClick i dipatchuje thunka (robie fetch requesta; pkt 13 z dokumentacji) */}
-        {/* 3. dostane w odpowiedzi konwersację (pustą albo nie w zaleznosci czy mam juz rozmowe z danym userem) */}
-        {/* 4. jesli juz mam konwersacje z danym userem (sprawdzam czy ID konwersacji nie znajduje się 
-          juz w naszym slice conversations) to w drugim then fetcha robimy przekierowanie (navigate 
-          przekazane do thunka jako argument, ktory funkcja dostanie w komponencie; czyli do thunka 
-          przekazujemy callback) */}
-        {/* 5. przekazuje accessToken, ID interlocutora, trzecim argumentem będzie navigate, a 
-          useNavigate będę robiła w SingleUser */}
-        <button className="single-user__profile_button">Message</button>
+
+        <button
+          onClick={sendMessage}
+          className={
+            userId === loggedUserId
+              ? "single-user__profile_button-hidden"
+              : "single-user__profile_button"
+          }
+        >
+          Message
+        </button>
       </div>
       <div className="single-user__profile-data">
         <div className="single-user__profile-data_subcontainer">
@@ -82,13 +91,15 @@ const SingleUser = () => {
         </div>
       </div>
       <div className="single-user__photo-container">
-        {user?.posts?.map((img) => (
-          <div
-            key={img._id}
-            className="single-user__photo"
-            style={{ backgroundImage: `url(${img.image})` }}
-          ></div>
-        ))}
+        {user?.posts
+          ?.sort((a, b) => b.createdAt - a.createdAt)
+          .map((img) => (
+            <div
+              key={img._id}
+              className="single-user__photo"
+              style={{ backgroundImage: `url(${img.image})` }}
+            ></div>
+          ))}
       </div>
     </div>
   );

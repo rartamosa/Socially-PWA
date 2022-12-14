@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,22 +11,32 @@ import { sendMessage } from "../reducers/conversations";
 
 const SingleConversation = () => {
   const { conversationId } = useParams();
+
   const conversation = useSelector((store) =>
     store.conversations.list.find((item) => item._id === conversationId)
   );
   const userId = useSelector((store) => store.user.userId);
   const accessToken = useSelector((store) => store.user.accessToken);
+
   const [message, setMessage] = useState("");
+
   const dispatch = useDispatch();
+
+  const executeScroll = useRef(null);
+
+  useEffect(() => {
+    if (conversation.messages.length > 0) {
+      executeScroll.current.scrollIntoView({ block: "end" });
+    }
+  }, [conversation]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (message !== "") {
       dispatch(sendMessage(accessToken, conversationId, userId, message));
+      setMessage("");
     }
   };
-
-  // console.log(conversation);
 
   return (
     <div className="screen-layout__screen single-conversation__screen">
@@ -40,14 +50,15 @@ const SingleConversation = () => {
       </h2>
       <div className="single-conversation__container">
         <div className="single-conversation__chat-container">
-          {conversation.messages.map((message) => (
+          {conversation.messages.map((message, index, array) => (
             <div
-              key={message.message._id}
+              key={message._id}
               className={
                 userId === message.author
                   ? "single-conversation__interlocutorA-message"
                   : "single-conversation__interlocutorB-message"
               }
+              ref={array.length - 1 === index ? executeScroll : null}
             >
               {message.message}
             </div>
@@ -70,11 +81,11 @@ const SingleConversation = () => {
             // overflowY: "auto",
             // textOverflow: "ellipsis",
             // width: "100%",
-            "& MuiInputBase-input": {
+            "& .MuiInputBase-input": {
               paddingRight: "85px",
-              overflowX: "hidden",
+              overflowX: "auto",
               minHeight: "19px",
-              overflowY: "auto",
+              // overflowY: "auto",
               textOverflow: "ellipsis",
             },
           }}
@@ -86,7 +97,7 @@ const SingleConversation = () => {
           sx={{
             position: "absolute",
             right: "18px",
-            top: "11px",
+            top: "27px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
