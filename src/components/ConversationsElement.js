@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MessagesElement = ({
+const ConversationsElement = ({
   conversationId,
   interlocutor,
   interlocutorAvatar,
@@ -10,7 +10,7 @@ const MessagesElement = ({
   const messageToShow = messages[messages.length - 1].message;
 
   return (
-    <Link to={`/messages/${conversationId}`}>
+    <Link to={`/conversations/${conversationId}`}>
       <div className="screen-layout__single-element">
         <div className="screen-layout__user-avatar_border">
           <div
@@ -29,4 +29,4 @@ const MessagesElement = ({
   );
 };
 
-export default MessagesElement;
+export default ConversationsElement;

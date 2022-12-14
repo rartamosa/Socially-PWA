@@ -34,15 +34,18 @@ const ScreenLayout = () => {
   const generateBackgroundClassName = () => {
     if (location.pathname === "/") {
       return "screen-layout__background_feed";
-    } else if (location.pathname === "/messages") {
+    } else if (location.pathname === "/conversations") {
       return "screen-layout__background_messages";
     } else if (location.pathname === "/people") {
       return "screen-layout__background_people";
-    } else if (location.pathname === "/myprofile") {
+    } else if (
+      location.pathname.includes("people") &&
+      location.pathname !== "/people"
+    ) {
       return "screen-layout__background_myprofile";
     } else if (
-      location.pathname.includes("messages") &&
-      location.pathname !== "/messages"
+      location.pathname.includes("conversations") &&
+      location.pathname !== "/conversations"
     ) {
       return "screen-layout__background_singlemessage";
     }
@@ -51,7 +54,10 @@ const ScreenLayout = () => {
   const generateIconColor = (icon) => {
     if (location.pathname === "/" && icon === "feed") {
       return "#7DB9B3";
-    } else if (location.pathname === "/messages" && icon === "messages") {
+    } else if (
+      location.pathname === "/conversations" &&
+      icon === "conversations"
+    ) {
       return "#7DB9B3";
     } else if (
       (location.pathname === "/people" && icon === "people") ||
@@ -98,11 +104,11 @@ const ScreenLayout = () => {
           <BottomNavigationAction
             icon={
               <ChatBubbleOutlineIcon
-                htmlColor={generateIconColor("messages")}
+                htmlColor={generateIconColor("conversations")}
               />
             }
             component={Link}
-            to="/messages"
+            to="/conversations"
           />
           <BottomNavigationAction
             icon={<AddCircleOutlineIcon />}

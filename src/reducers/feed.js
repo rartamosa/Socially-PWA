@@ -63,13 +63,12 @@ export const postFeed = (accessToken, image, navigate) => {
     const options = {
       method: "POST",
       headers: {
-        "Content-Type": image.type,
         Authorization: accessToken,
       },
       body: formData,
     };
     fetch(`${BASE_API_URL}/feed`, options)
       .then((res) => res.json())
-      .then((data) => navigate(`people/${data.response.user._id}`));
+      .then((data) => navigate(`/people/${data.response.user._id}`));
   };
 };

@@ -274,7 +274,7 @@ code {
 }
 
 /* _____________________________________________________________________ */
-/* Single Message */
+/* Single Conversation */
 .screen-layout__background_singlemessage {
   background-image: url(../public/assets/singlemessage_background.png);
   background-repeat: no-repeat;
@@ -282,34 +282,42 @@ code {
   background-position: 8px 23px;
 }
 
-.single-message__container {
+.single-conversation__screen {
+  height: calc(100vh - 222px);
+  overflow: hidden;
+  padding-bottom: 90px;
+}
+
+.single-conversation__container {
   display: flex;
   flex-direction: column;
   height: calc(100% - 90px);
   justify-content: space-between;
 }
 
-.single-message__chat-container {
+.single-conversation__chat-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  height: calc(100vh - 320px);
+  overflow-y: auto;
 }
 
-.single-message__interlocutorB-message {
+.single-conversation__interlocutorB-message {
   background-color: #fafafa;
   padding: 11px 25px;
   border-radius: 0px 15px 15px 15px;
   max-width: 70%;
 }
 
-.single-message__interlocutorA-message {
+.single-conversation__interlocutorA-message {
   background-color: #fafafa;
   border-radius: 0px 15px 15px 15px;
   max-width: 70%;
   align-self: flex-end;
 }
 
-.single-message__form {
+.single-conversation__form {
   position: relative;
 }
 

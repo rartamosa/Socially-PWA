@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getMessages } from "../reducers/conversations";
 
-import MessagesElement from "../components/MessagesElement";
+import ConversationsElement from "../components/ConversationsElement";
 
-const Messages = () => {
+const ConversationsList = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
   const messagesList = useSelector((store) => store.conversations.list);
   const userId = useSelector((store) => store.user.userId);
@@ -26,7 +26,7 @@ const Messages = () => {
             (user) => user._id !== userId
           );
           return (
-            <MessagesElement
+            <ConversationsElement
               key={message._id}
               conversationId={message._id}
               interlocutor={interlocutor.name}
@@ -40,4 +40,4 @@ const Messages = () => {
   );
 };
 
-export default Messages;
+export default ConversationsList;

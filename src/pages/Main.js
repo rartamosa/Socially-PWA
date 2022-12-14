@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router";
 
 import Feed from "./Feed";
-import Messages from "./Messages";
-import SingleMessage from "./SingleMessage";
+import ConversationsList from "./ConversationsList";
+import SingleConversation from "./SingleConversation";
 import PeopleList from "./PeopleList";
 import SingleUser from "./SingleUser";
 import Add from "./Add";
@@ -24,8 +24,11 @@ const Main = () => {
     <Routes>
       <Route element={<ScreenLayout />}>
         <Route index element={<Feed />} />
-        <Route path="messages" element={<Messages />} />
-        <Route path="messages/:conversationId" element={<SingleMessage />} />
+        <Route path="conversations" element={<ConversationsList />} />
+        <Route
+          path="conversations/:conversationId"
+          element={<SingleConversation />}
+        />
         <Route path="add" element={<Add />} />
         <Route path="people" element={<PeopleList />} />
         <Route path="people/:userId" element={<SingleUser />} />
