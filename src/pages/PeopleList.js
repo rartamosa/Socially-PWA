@@ -14,9 +14,7 @@ const People = () => {
     if (accessToken) {
       dispatch(getProfiles(accessToken));
     }
-  }, [accessToken]);
-
-  // console.log(peopleList);
+  }, [accessToken, dispatch]);
 
   return (
     <div className="screen-layout__screen">

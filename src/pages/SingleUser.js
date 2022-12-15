@@ -22,7 +22,7 @@ const SingleUser = () => {
     if (accessToken) {
       dispatch(getUserData(accessToken));
     }
-  }, [accessToken]);
+  }, [accessToken, dispatch]);
 
   useEffect(() => {
     if (userId) {
@@ -37,7 +37,7 @@ const SingleUser = () => {
         .then((res) => res.json())
         .then((data) => setUser(data.response));
     }
-  }, [userId]);
+  }, [userId, accessToken]);
 
   const sendMessage = () => {
     dispatch(sendMessageFromProfile(accessToken, userId, navigate));
@@ -77,28 +77,16 @@ const SingleUser = () => {
                   <img
                     src={user.image}
                     className="single-user__profile-picture"
+                    alt="Profile"
                   />
                 </label>
               ) : (
                 <img
                   src={user.image}
                   className="single-user__profile-picture"
+                  alt="Profile"
                 />
               )}
-
-              {/* <label htmlFor="image">
-                <input
-                  type="file"
-                  onChange={onAvatarChange}
-                  name="image"
-                  id="image"
-                  accept="image/*"
-                />
-                <img
-                  src={user.image}
-                  className="single-user__profile-picture"
-                />
-              </label> */}
             </div>
           </div>
         </div>

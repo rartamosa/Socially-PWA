@@ -7,8 +7,6 @@ import { PrimaryButton } from "../styled-components/Buttons";
 
 import { userLogin } from "../reducers/user";
 
-import Loading from "../components/Loading";
-
 const SignIn = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +27,7 @@ const SignIn = () => {
     if (accessToken && !error) {
       navigate("/");
     }
-  }, [accessToken, error]);
+  }, [accessToken, error, navigate]);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -86,15 +84,12 @@ const SignIn = () => {
             ) : (
               <span>{mode === "signin" ? "login" : "register"}</span>
             )}
-            {/* <span>{mode === "signin" ? "login" : "register"}</span> */}
           </PrimaryButton>
           {error && (
             <span className="sign-container__login-error">{error}</span>
           )}
         </form>
       </div>
-
-      {/* {loading && <span className="loader"></span>} */}
 
       {mode === "signin" ? (
         <button onClick={signupToggle} className="sign-container__toggle">
