@@ -28,7 +28,7 @@ const ScreenLayout = () => {
   };
 
   const loggingOut = () => {
-    dispatch(user.actions.setAccessToken(""));
+    dispatch(user.actions.setLogOut());
   };
 
   const generateBackgroundClassName = () => {

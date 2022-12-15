@@ -7,7 +7,7 @@ const conversations = createSlice({
     list: [],
   },
   reducers: {
-    setMessages: (store, action) => {
+    setConversations: (store, action) => {
       store.list = action.payload;
     },
     setSingleMessage: (store, action) => {
@@ -39,7 +39,7 @@ export const getMessages = (accessToken) => {
     fetch(`${BASE_API_URL}/conversations`, options)
       .then((res) => res.json())
       .then((data) =>
-        dispatch(conversations.actions.setMessages(data.response))
+        dispatch(conversations.actions.setConversations(data.response))
       );
   };
 };

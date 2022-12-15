@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { messagePlaceholder } from "../utils/commons";
-
 const ConversationsElement = ({
   conversationId,
   interlocutor,
@@ -22,16 +20,6 @@ const ConversationsElement = ({
         </div>
         <div>
           <p className="screen-layout__user-name">{interlocutor}</p>
-
-          {/* {messageToShow ? (
-            <span className="messages-container__user-message">
-              {messageToShow}
-            </span>
-          ) : (
-            <span className="messages-container__message-placeholder">
-              {messagePlaceholder}
-            </span>
-          )} */}
 
           {messageToShow !== undefined && (
             <span className="messages-container__user-message">

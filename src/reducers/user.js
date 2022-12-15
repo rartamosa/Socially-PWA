@@ -32,6 +32,11 @@ const user = createSlice({
     setError: (store, action) => {
       store.error = action.payload;
     },
+    setLogOut: (store) => {
+      store.accessToken = "";
+      store.login = "";
+      store.userId = "";
+    },
   },
 });
 
@@ -52,15 +57,16 @@ export const userLogin = (login, password, mode) => {
     fetch(`${BASE_API_URL}/${mode}`, options)
       .then((res) => res.json())
       .then((data) => {
-        if (!data.response.success && mode === "signin") {
+        if (!data.success && mode === "signin") {
           dispatch(user.actions.setError(data.response));
-        } else if (!data.response.success && mode === "signup") {
+        } else if (!data.success && mode === "signup") {
           dispatch(user.actions.setError(data.response.message));
         } else {
           batch(() => {
             dispatch(user.actions.setLogIn(data.response.login));
             dispatch(user.actions.setUserId(data.response.userId));
             dispatch(user.actions.setAccessToken(data.response.accessToken));
+            dispatch(user.actions.setError(""));
           });
         }
       });

@@ -25,11 +25,11 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(false);
     if (accessToken && !error) {
       navigate("/");
-      setLoading(false);
     }
-  }, [accessToken]);
+  }, [accessToken, error]);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
@@ -80,8 +80,13 @@ const SignIn = () => {
             </span>
           )}
 
-          <PrimaryButton type="submit">
-            <span>{mode === "signin" ? "login" : "register"}</span>
+          <PrimaryButton type="submit" sx={{ width: "20px" }}>
+            {loading ? (
+              <span className="loader"></span>
+            ) : (
+              <span>{mode === "signin" ? "login" : "register"}</span>
+            )}
+            {/* <span>{mode === "signin" ? "login" : "register"}</span> */}
           </PrimaryButton>
           {error && (
             <span className="sign-container__login-error">{error}</span>
@@ -89,7 +94,7 @@ const SignIn = () => {
         </form>
       </div>
 
-      {loading && <Loading />}
+      {/* {loading && <span className="loader"></span>} */}
 
       {mode === "signin" ? (
         <button onClick={signupToggle} className="sign-container__toggle">
