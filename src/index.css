@@ -189,68 +189,7 @@ code {
   margin-top: 10px;
 }
 
-/* _____________________________________________________________________ */
-/* Loading */
-/* .loading__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.loading__container-element1 {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px solid #000;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: rotation 2s linear infinite;
-}
-
-.loading__container-element1::after {
-  content: "";
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid #000;
-  border-top: 3px solid transparent;
-  border-bottom: 3px solid transparent;
-  animation: rotation 1s linear infinite reverse;
-}
-
-.loading-overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(225, 246, 244, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loading-phrases {
-  font-size: 17px;
-  margin: 0 24px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  width: 70%;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 33px;
-  box-shadow: 0px 4px 25px rgb(0 0 0 / 10%);
-  flex-direction: column;
-  gap: 45px;
-  padding: 40px 20px;
-} */
-
-.loader {
+.sign-container__loader {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -258,21 +197,6 @@ code {
   box-shadow: 16px 0 #fff, -16px 0 #fff;
   position: relative;
   animation: flash 0.5s ease-out infinite alternate;
-}
-
-@keyframes flash {
-  0% {
-    background-color: #fff2;
-    box-shadow: 16px 0 #fff2, -16px 0 #fff;
-  }
-  50% {
-    background-color: #fff;
-    box-shadow: 16px 0 #fff2, -16px 0 #fff2;
-  }
-  100% {
-    background-color: #fff2;
-    box-shadow: 16px 0 #fff, -16px 0 #fff2;
-  }
 }
 
 /* _____________________________________________________________________ */
@@ -593,6 +517,10 @@ a:last-of-type .conversations-element__single-box {
   border: none;
   background: transparent;
   margin: 12px 0 4px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: pre-wrap;
+  width: 300px;
 }
 
 .single-user__profile-data_login {
@@ -656,11 +584,17 @@ a:last-of-type .conversations-element__single-box {
 }
 
 /* Animations */
-/* @keyframes rotation {
-  from {
-    transform: rotate(0deg);
+@keyframes flash {
+  0% {
+    background-color: #fff2;
+    box-shadow: 16px 0 #fff2, -16px 0 #fff;
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    background-color: #fff;
+    box-shadow: 16px 0 #fff2, -16px 0 #fff2;
   }
-} */
+  100% {
+    background-color: #fff2;
+    box-shadow: 16px 0 #fff, -16px 0 #fff2;
+  }
+}

@@ -80,7 +80,7 @@ const SignIn = () => {
 
           <PrimaryButton type="submit" sx={{ width: "20px" }}>
             {loading ? (
-              <span className="loader"></span>
+              <span className="sign-container__loader"></span>
             ) : (
               <span>{mode === "signin" ? "login" : "register"}</span>
             )}
