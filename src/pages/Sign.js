@@ -7,29 +7,37 @@ import { PrimaryButton } from "../styled-components/Buttons";
 
 import { userLogin } from "../reducers/user";
 
+import Loading from "../components/Loading";
+
 const SignIn = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [mode, setMode] = useState("signin");
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   const accessToken = useSelector((store) => store.user.accessToken);
+  const error = useSelector((store) => store.user.error);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (accessToken) {
+    if (accessToken && !error) {
       navigate("/");
+      setLoading(false);
     }
   }, [accessToken]);
 
   const onFormSubmit = (event) => {
     event.preventDefault();
     setIsFormSubmitted(true);
-    dispatch(userLogin(login, password, mode));
+    if (login && password) {
+      setLoading(true);
+      dispatch(userLogin(login, password, mode));
+    }
   };
 
   const signupToggle = () => {
@@ -75,8 +83,13 @@ const SignIn = () => {
           <PrimaryButton type="submit">
             <span>{mode === "signin" ? "login" : "register"}</span>
           </PrimaryButton>
+          {error && (
+            <span className="sign-container__login-error">{error}</span>
+          )}
         </form>
       </div>
+
+      {loading && <Loading />}
 
       {mode === "signin" ? (
         <button onClick={signupToggle} className="sign-container__toggle">

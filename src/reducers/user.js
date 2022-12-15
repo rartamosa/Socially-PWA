@@ -11,6 +11,7 @@ const user = createSlice({
     accessToken: "",
     userName: "",
     userAvatar: "",
+    error: "",
   },
   reducers: {
     setLogIn: (store, action) => {
@@ -27,6 +28,9 @@ const user = createSlice({
     },
     setUserAvatar: (store, action) => {
       store.userAvatar = action.payload;
+    },
+    setError: (store, action) => {
+      store.error = action.payload;
     },
   },
 });
@@ -48,11 +52,17 @@ export const userLogin = (login, password, mode) => {
     fetch(`${BASE_API_URL}/${mode}`, options)
       .then((res) => res.json())
       .then((data) => {
-        batch(() => {
-          dispatch(user.actions.setLogIn(data.response.login));
-          dispatch(user.actions.setUserId(data.response.userId));
-          dispatch(user.actions.setAccessToken(data.response.accessToken));
-        });
+        if (!data.response.success && mode === "signin") {
+          dispatch(user.actions.setError(data.response));
+        } else if (!data.response.success && mode === "signup") {
+          dispatch(user.actions.setError(data.response.message));
+        } else {
+          batch(() => {
+            dispatch(user.actions.setLogIn(data.response.login));
+            dispatch(user.actions.setUserId(data.response.userId));
+            dispatch(user.actions.setAccessToken(data.response.accessToken));
+          });
+        }
       });
   };
 };
