@@ -125,6 +125,7 @@ code {
 .sign-container__form {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .sign-container__form input {
@@ -167,6 +168,18 @@ code {
   background-color: transparent;
   border: none;
   padding: 0;
+}
+
+.sign-container__error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  top: 53px;
+  left: 23px;
+}
+
+.sign-container__error:last-of-type {
+  top: 152px;
 }
 
 /* _____________________________________________________________________ */
@@ -300,6 +313,20 @@ code {
   justify-content: space-between;
 }
 
+.conversations-element__single-box {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 33px;
+  padding: 15px;
+  display: flex;
+  gap: 17px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+a:last-of-type .conversations-element__single-box {
+  margin-bottom: 0;
+}
+
 .single-conversation__chat-container {
   display: flex;
   flex-direction: column;
@@ -317,9 +344,10 @@ code {
 
 .single-conversation__interlocutorA-message {
   background-color: #fafafa;
-  border-radius: 0px 15px 15px 15px;
+  border-radius: 15px 0 15px 15px;
   max-width: 70%;
   align-self: flex-end;
+  padding: 11px 25px;
 }
 
 .single-conversation__form {
@@ -419,7 +447,7 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 42px 0;
+  margin: 8px 0 42px 0;
 }
 
 .feed-container__data-container {
@@ -430,16 +458,15 @@ code {
 }
 
 .single-user__profile-picture {
-  /* background-image: url(https://i1.sndcdn.com/avatars-2YxylsxlqHnbV3SL-opz3ZQ-t500x500.jpg); */
   filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25));
   width: 120%;
   height: 120%;
-  background-size: cover;
-  background-repeat: no-repeat;
   transform: rotate(-45deg);
   position: relative;
   top: -5px;
   left: -10px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .single-user__profile-picture_border {
@@ -460,12 +487,19 @@ code {
   box-sizing: border-box;
 }
 
+.single-user__profile-picture_box input {
+  display: none;
+}
+
 .single-user__profile-data_name {
   font-weight: 700;
   font-size: 25px;
   line-height: 38px;
-  margin-bottom: 4px;
   text-align: center;
+  font-family: "Poppins";
+  border: none;
+  background: transparent;
+  margin: 12px 0 4px 0;
 }
 
 .single-user__profile-data_login {

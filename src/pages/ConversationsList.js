@@ -1,12 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import ConversationsElement from "../components/ConversationsElement";
 
 const ConversationsList = () => {
   const messagesList = useSelector((store) => store.conversations.list);
   const userId = useSelector((store) => store.user.userId);
-  const dispatch = useDispatch();
 
   return (
     <div className="screen-layout__screen">
@@ -16,7 +15,10 @@ const ConversationsList = () => {
           const interlocutor = message.interlocutors.find(
             (user) => user._id !== userId
           );
-          console.log(message);
+          // const ongoingConversations = message.messages.find(
+          //   (conversation) => conversation !== undefined
+          // );
+          // console.log(ongoingConversations);
           return (
             <ConversationsElement
               key={message._id}

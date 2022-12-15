@@ -56,7 +56,6 @@ export const toggleLikeFeed = (accessToken, feedId) => {
 };
 
 export const postFeed = (accessToken, image, navigate) => {
-  console.log(accessToken, image, navigate);
   return (dispatch, getState) => {
     const formData = new FormData();
     formData.append("image", image);

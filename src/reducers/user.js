@@ -70,10 +70,46 @@ export const getUserData = (accessToken) => {
       .then((res) => res.json())
       .then((data) => {
         batch(() => {
-          // console.log(data);
           dispatch(user.actions.setUserName(data.response.name));
           dispatch(user.actions.setUserAvatar(data.response.image));
         });
       });
+  };
+};
+
+export const getUserAvatar = (accessToken, image) => {
+  return (dispatch, getState) => {
+    const formData = new FormData();
+    formData.append("image", image);
+    const options = {
+      method: "PUT",
+      headers: {
+        Authorization: accessToken,
+      },
+      body: formData,
+    };
+    fetch(`${BASE_API_URL}/user`, options)
+      .then((res) => res.json())
+      .then((data) =>
+        dispatch(user.actions.setUserAvatar(data.response.image))
+      );
+  };
+};
+
+export const getUserName = (accessToken, name) => {
+  return (dispatch, getState) => {
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
+      body: JSON.stringify({
+        name,
+      }),
+    };
+    fetch(`${BASE_API_URL}/user`, options)
+      .then((res) => res.json())
+      .then((data) => dispatch(user.actions.setUserName(data.response.name)));
   };
 };

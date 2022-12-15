@@ -13,6 +13,8 @@ const SignIn = () => {
 
   const [mode, setMode] = useState("signin");
 
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
   const accessToken = useSelector((store) => store.user.accessToken);
 
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ const SignIn = () => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
+    setIsFormSubmitted(true);
     dispatch(userLogin(login, password, mode));
   };
 
@@ -51,6 +54,11 @@ const SignIn = () => {
             type="text"
             onChange={(event) => setLogin(event.target.value)}
           />
+          {isFormSubmitted && !login && (
+            <span className="sign-container__error">
+              * You have to type your login
+            </span>
+          )}
 
           <Input
             value={password}
@@ -58,6 +66,11 @@ const SignIn = () => {
             type="password"
             onChange={(event) => setPassword(event.target.value)}
           />
+          {isFormSubmitted && !password && (
+            <span className="sign-container__error">
+              * You have to type your password
+            </span>
+          )}
 
           <PrimaryButton type="submit">
             <span>{mode === "signin" ? "login" : "register"}</span>

@@ -74,18 +74,12 @@ const SingleConversation = () => {
           placeholder="Write a message..."
           sx={{
             position: "relative",
-            // paddingRight: "85px",
             marginTop: "16px",
-            // overflowX: "hidden",
-            // minHeight: "19px",
-            // overflowY: "auto",
-            // textOverflow: "ellipsis",
-            // width: "100%",
+
             "& .MuiInputBase-input": {
               paddingRight: "85px",
               overflowX: "auto",
               minHeight: "19px",
-              // overflowY: "auto",
               textOverflow: "ellipsis",
             },
           }}
