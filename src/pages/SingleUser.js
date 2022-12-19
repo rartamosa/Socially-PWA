@@ -8,11 +8,12 @@ import { sendMessageFromProfile } from "../reducers/conversations";
 import { getUserAvatar, getUserName } from "../reducers/user";
 
 const SingleUser = () => {
-  const { userId } = useParams();
+  const [user, setUser] = useState({});
+
   const loggedUserId = useSelector((store) => store.user.userId);
   const accessToken = useSelector((store) => store.user.accessToken);
 
-  const [user, setUser] = useState({});
+  const { userId } = useParams();
 
   const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const SingleUser = () => {
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(getUserData(accessToken));
+      dispatch(getUserData());
     }
   }, [accessToken, dispatch]);
 
@@ -40,11 +41,11 @@ const SingleUser = () => {
   }, [userId, accessToken]);
 
   const sendMessage = () => {
-    dispatch(sendMessageFromProfile(accessToken, userId, navigate));
+    dispatch(sendMessageFromProfile(userId, navigate));
   };
 
   const onAvatarChange = (event) => {
-    dispatch(getUserAvatar(accessToken, event.target.files[0]));
+    dispatch(getUserAvatar(event.target.files[0]));
     setUser({
       ...user,
       image: URL.createObjectURL(event.target.files[0]),
@@ -52,12 +53,14 @@ const SingleUser = () => {
   };
 
   const onNameChange = (event) => {
-    dispatch(getUserName(accessToken, event.target.value));
+    dispatch(getUserName(event.target.value));
     setUser({
       ...user,
       name: event.target.value,
     });
   };
+
+  const isUserLoggedIn = loggedUserId === user._id;
 
   return (
     <div className="screen-layout__screen">
@@ -65,7 +68,7 @@ const SingleUser = () => {
         <div>
           <div className="single-user__profile-picture_border">
             <div className="single-user__profile-picture_box">
-              {loggedUserId === user._id ? (
+              {isUserLoggedIn ? (
                 <label htmlFor="image">
                   <input
                     type="file"
@@ -91,7 +94,7 @@ const SingleUser = () => {
           </div>
         </div>
 
-        {loggedUserId === user._id ? (
+        {isUserLoggedIn ? (
           <input
             type="text"
             value={user?.name}
@@ -108,7 +111,7 @@ const SingleUser = () => {
         <button
           onClick={sendMessage}
           className={
-            userId === loggedUserId
+            isUserLoggedIn
               ? "single-user__profile_button-hidden"
               : "single-user__profile_button"
           }

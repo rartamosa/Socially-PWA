@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-
 import { Input } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import { styled } from "@mui/material/styles";
 
 import { PrimaryButton } from "../styled-components/Buttons";
 
 import { sendMessage } from "../reducers/conversations";
 
 const SingleConversation = () => {
+  const [message, setMessage] = useState("");
+
   const { conversationId } = useParams();
 
   const conversation = useSelector((store) =>
     store.conversations.list.find((item) => item._id === conversationId)
   );
   const userId = useSelector((store) => store.user.userId);
-  const accessToken = useSelector((store) => store.user.accessToken);
-
-  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -33,7 +32,7 @@ const SingleConversation = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (message !== "") {
-      dispatch(sendMessage(accessToken, conversationId, userId, message));
+      dispatch(sendMessage(conversationId, userId, message));
       setMessage("");
     }
   };
@@ -69,39 +68,38 @@ const SingleConversation = () => {
         onSubmit={onFormSubmit}
         className="sign-container__form single-conversation__form"
       >
-        <Input
+        <ConversationInput
           type="text"
           placeholder="Write a message..."
-          sx={{
-            position: "relative",
-            marginTop: "16px",
-
-            "& .MuiInputBase-input": {
-              paddingRight: "85px",
-              overflowX: "auto",
-              minHeight: "19px",
-              textOverflow: "ellipsis",
-            },
-          }}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-        ></Input>
-        <PrimaryButton
-          type="submit"
-          sx={{
-            position: "absolute",
-            right: "18px",
-            top: "27px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        ></ConversationInput>
+        <SendButton type="submit">
           <SendIcon />
-        </PrimaryButton>
+        </SendButton>
       </form>
     </div>
   );
 };
 
 export default SingleConversation;
+
+const ConversationInput = styled(Input)(() => ({
+  position: "relative",
+  marginTop: "16px",
+  "& .MuiInputBase-input": {
+    paddingRight: "85px",
+    overflowX: "auto",
+    minHeight: "19px",
+    textOverflow: "ellipsis",
+  },
+}));
+
+const SendButton = styled(PrimaryButton)(() => ({
+  position: "absolute",
+  right: "18px",
+  top: "27px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));

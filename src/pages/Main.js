@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router";
 
+import { CONVERSATIONS, PEOPLE, ADD } from "../utils/commons";
+
 import Feed from "./Feed";
 import ConversationsList from "./ConversationsList";
 import SingleConversation from "./SingleConversation";
@@ -21,26 +23,26 @@ const Main = () => {
     if (!accessToken) {
       navigate("/signin");
     }
-  }, [accessToken]);
+  }, [accessToken, navigate]);
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(getMessages(accessToken));
+      dispatch(getMessages());
     }
-  }, [accessToken]);
+  }, [accessToken, dispatch]);
 
   return (
     <Routes>
       <Route element={<ScreenLayout />}>
         <Route index element={<Feed />} />
-        <Route path="conversations" element={<ConversationsList />} />
+        <Route path={CONVERSATIONS} element={<ConversationsList />} />
         <Route
-          path="conversations/:conversationId"
+          path={`${CONVERSATIONS}/:conversationId`}
           element={<SingleConversation />}
         />
-        <Route path="add" element={<Add />} />
-        <Route path="people" element={<PeopleList />} />
-        <Route path="people/:userId" element={<SingleUser />} />
+        <Route path={ADD} element={<Add />} />
+        <Route path={PEOPLE} element={<PeopleList />} />
+        <Route path={`${PEOPLE}/:userId`} element={<SingleUser />} />
       </Route>
     </Routes>
   );

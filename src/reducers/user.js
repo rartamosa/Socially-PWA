@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { batch } from "react-redux";
 
-import { BASE_API_URL } from "../utils/commons";
+import { BASE_API_URL, USER } from "../utils/commons";
 
 const user = createSlice({
   name: "user",
@@ -73,16 +73,16 @@ export const userLogin = (login, password, mode) => {
   };
 };
 
-export const getUserData = (accessToken) => {
+export const getUserData = () => {
   return (dispatch, getState) => {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
     };
-    fetch(`${BASE_API_URL}/user`, options)
+    fetch(`${BASE_API_URL}/${USER}`, options)
       .then((res) => res.json())
       .then((data) => {
         batch(() => {
@@ -93,18 +93,18 @@ export const getUserData = (accessToken) => {
   };
 };
 
-export const getUserAvatar = (accessToken, image) => {
+export const getUserAvatar = (image) => {
   return (dispatch, getState) => {
     const formData = new FormData();
     formData.append("image", image);
     const options = {
       method: "PUT",
       headers: {
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
       body: formData,
     };
-    fetch(`${BASE_API_URL}/user`, options)
+    fetch(`${BASE_API_URL}/${USER}`, options)
       .then((res) => res.json())
       .then((data) =>
         dispatch(user.actions.setUserAvatar(data.response.image))
@@ -112,19 +112,19 @@ export const getUserAvatar = (accessToken, image) => {
   };
 };
 
-export const getUserName = (accessToken, name) => {
+export const getUserName = (name) => {
   return (dispatch, getState) => {
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
       body: JSON.stringify({
         name,
       }),
     };
-    fetch(`${BASE_API_URL}/user`, options)
+    fetch(`${BASE_API_URL}/${USER}`, options)
       .then((res) => res.json())
       .then((data) => dispatch(user.actions.setUserName(data.response.name)));
   };

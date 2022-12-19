@@ -1,74 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
 
 import App from "./App";
-import user from "./reducers/user";
-import feed from "./reducers/feed";
-import conversations from "./reducers/conversations";
-import profiles from "./reducers/profiles";
+import store from "./store";
+import theme from "./theme";
 
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
-
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-
-const reducer = combineReducers({
-  user: user.reducer,
-  feed: feed.reducer,
-  conversations: conversations.reducer,
-  profiles: profiles.reducer,
-});
-
-const store = configureStore({ reducer });
-
-const theme = createTheme({
-  components: {
-    MuiBottomNavigation: {
-      styleOverrides: {
-        root: {
-          padding: "0px 45px 20px 45px;",
-          "& .MuiButtonBase-root": {
-            minWidth: "57px",
-          },
-          "& .MuiButtonBase-root:nth-of-type(3)": {
-            backgroundColor: "#000",
-            color: "#fff",
-            borderRadius: "23px",
-            position: "relative",
-            transform: "rotate(45deg)",
-            bottom: "15px",
-            "& .MuiSvgIcon-root": {
-              transform: "rotate(-45deg)",
-            },
-          },
-        },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          "& .MuiInputBase-input": {
-            backgroundColor: "#fff",
-            boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.1)",
-          },
-          input: {
-            "&::placeholder": {
-              color: "#656565",
-            },
-          },
-        },
-      },
-      defaultProps: {
-        disableUnderline: true,
-      },
-    },
-  },
-});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -12,7 +12,7 @@ const People = () => {
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(getProfiles(accessToken));
+      dispatch(getProfiles());
     }
   }, [accessToken, dispatch]);
 

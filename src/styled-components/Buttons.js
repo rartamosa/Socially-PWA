@@ -27,8 +27,12 @@ export const PrimaryButton = styled(Button)(() => ({
 
 export const SecondaryButton = styled(Button)(() => ({
   padding: "0",
-  color: "#000",
   minWidth: "fit-content",
+  textTransform: "capitalize",
+  fontFamily: "Poppins",
+  fontSize: "16px",
+  lineHeight: "24px",
+  color: "#4E4E4E",
 }));
 
 export const LikeButton = styled(FavoriteBorderIcon)(() => ({

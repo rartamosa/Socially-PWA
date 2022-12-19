@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BASE_API_URL } from "../utils/commons";
+import { BASE_API_URL, CONVERSATIONS } from "../utils/commons";
 
 const conversations = createSlice({
   name: "conversations",
@@ -27,16 +27,16 @@ const conversations = createSlice({
 
 export default conversations;
 
-export const getMessages = (accessToken) => {
+export const getMessages = () => {
   return (dispatch, getState) => {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
     };
-    fetch(`${BASE_API_URL}/conversations`, options)
+    fetch(`${BASE_API_URL}/${CONVERSATIONS}`, options)
       .then((res) => res.json())
       .then((data) =>
         dispatch(conversations.actions.setConversations(data.response))
@@ -44,20 +44,20 @@ export const getMessages = (accessToken) => {
   };
 };
 
-export const sendMessage = (accessToken, conversationId, authorId, message) => {
+export const sendMessage = (conversationId, authorId, message) => {
   return (dispatch, getState) => {
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
       body: JSON.stringify({
         authorId,
         message,
       }),
     };
-    fetch(`${BASE_API_URL}/conversations/${conversationId}`, options)
+    fetch(`${BASE_API_URL}/${CONVERSATIONS}/${conversationId}`, options)
       .then((res) => res.json())
       .then((data) =>
         dispatch(conversations.actions.setSingleMessage(data.response))
@@ -65,13 +65,13 @@ export const sendMessage = (accessToken, conversationId, authorId, message) => {
   };
 };
 
-export const sendMessageFromProfile = (accessToken, userId, navigate) => {
+export const sendMessageFromProfile = (userId, navigate) => {
   return (dispatch, getState) => {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
     };
     fetch(`${BASE_API_URL}/conversation/${userId}`, options)
@@ -82,10 +82,10 @@ export const sendMessageFromProfile = (accessToken, userId, navigate) => {
             (conversation) => conversation._id === data.response[0]._id
           )
         ) {
-          return navigate(`/conversations/${data.response[0]._id}`);
+          return navigate(`/${CONVERSATIONS}/${data.response[0]._id}`);
         } else {
           dispatch(conversations.actions.setConversation(data.response[0]));
-          navigate(`/conversations/${data.response[0]._id}`);
+          navigate(`/${CONVERSATIONS}/${data.response[0]._id}`);
         }
       });
   };

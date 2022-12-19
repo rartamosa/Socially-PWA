@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
 import { postFeed } from "../reducers/feed";
@@ -7,7 +7,6 @@ import { PrimaryButton } from "../styled-components/Buttons";
 
 const Add = () => {
   const [image, setImage] = useState(null);
-  const accessToken = useSelector((store) => store.user.accessToken);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,7 +18,7 @@ const Add = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(postFeed(accessToken, image, navigate));
+    dispatch(postFeed(image, navigate));
   };
 
   return (
@@ -31,18 +30,18 @@ const Add = () => {
               <input
                 type="file"
                 onChange={onImageChange}
-                name="image"
                 id="image"
                 accept="image/*"
               />
-              {image ? (
-                <img
-                  src={URL.createObjectURL(image)}
-                  className="add__uploaded-img"
-                />
-              ) : (
-                <img src="/assets/upload_placeholder.png" alt="Image" />
-              )}
+              <img
+                src={
+                  image
+                    ? URL.createObjectURL(image)
+                    : "/assets/upload_placeholder.png"
+                }
+                alt="Preview"
+                className={image ? "add__uploaded-img" : ""}
+              />
             </label>
           </div>
           <div className="add__button-container">

@@ -3,16 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Input } from "@mui/material";
 
-import { PrimaryButton } from "../styled-components/Buttons";
+import { PrimaryButton, SecondaryButton } from "../styled-components/Buttons";
 
 import { userLogin } from "../reducers/user";
+
+import { SIGN_IN, SIGN_UP } from "../utils/commons";
 
 const SignIn = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [mode, setMode] = useState("signin");
+  const [mode, setMode] = useState(SIGN_IN);
 
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -38,12 +40,8 @@ const SignIn = () => {
     }
   };
 
-  const signupToggle = () => {
-    setMode("signup");
-  };
-
-  const loginToggle = () => {
-    setMode("signin");
+  const modeToggle = (mode) => {
+    setMode(mode);
   };
 
   return (
@@ -82,7 +80,7 @@ const SignIn = () => {
             {loading ? (
               <span className="sign-container__loader"></span>
             ) : (
-              <span>{mode === "signin" ? "login" : "register"}</span>
+              <span>{mode === SIGN_IN ? "login" : "register"}</span>
             )}
           </PrimaryButton>
           {error && (
@@ -91,14 +89,14 @@ const SignIn = () => {
         </form>
       </div>
 
-      {mode === "signin" ? (
-        <button onClick={signupToggle} className="sign-container__toggle">
+      {mode === SIGN_IN ? (
+        <SecondaryButton onClick={() => modeToggle(SIGN_UP)}>
           Or sign up
-        </button>
+        </SecondaryButton>
       ) : (
-        <button onClick={loginToggle} className="sign-container__toggle">
+        <SecondaryButton onClick={() => modeToggle(SIGN_IN)}>
           Or sign in
-        </button>
+        </SecondaryButton>
       )}
     </div>
   );

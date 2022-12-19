@@ -45,7 +45,7 @@ code {
 }
 
 .screen-layout__screen {
-  margin: 0 24px;
+  padding: 0 24px;
   padding-bottom: 85px;
   overflow-y: auto;
   height: calc(100vh - 132px);
@@ -74,7 +74,6 @@ code {
 }
 
 .screen-layout__user-avatar {
-  /* background-image: url(https://i1.sndcdn.com/avatars-2YxylsxlqHnbV3SL-opz3ZQ-t500x500.jpg); */
   width: 60px;
   height: 60px;
   background-size: cover;
@@ -133,7 +132,7 @@ code {
   font-size: 12.8px;
   line-height: 19px;
   color: #656565;
-  box-shadow: 0px 4px 25px rgb(0 0 0 / 10%);
+  box-shadow: 0 4px 25px rgb(0 0 0 / 10%);
   border-radius: 39px;
   padding: 30px 25px;
   border: none;
@@ -158,16 +157,6 @@ code {
 .sign-container__login-button {
   left: 10% !important;
   top: 30% !important;
-}
-
-.sign-container__toggle {
-  font-family: "Poppins";
-  font-size: 16px;
-  line-height: 24px;
-  color: #4e4e4e;
-  background-color: transparent;
-  border: none;
-  padding: 0;
 }
 
 .sign-container__error {
@@ -208,12 +197,11 @@ code {
 }
 
 .feed-container__box {
-  /* background-image: url(https://ychef.files.bbci.co.uk/976x549/p06dmw7v.jpg); */
   width: 100%;
   height: 288px;
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 7px 20px #c4c4c4;
+  box-shadow: 0 7px 20px #c4c4c4;
   border-radius: 20px;
   padding: 13px;
   box-sizing: border-box;
@@ -233,7 +221,6 @@ code {
 }
 
 .feed-container__avatar {
-  /* background-image: url(https://i1.sndcdn.com/avatars-2YxylsxlqHnbV3SL-opz3ZQ-t500x500.jpg); */
   width: 35px;
   height: 35px;
   background-size: cover;
@@ -246,7 +233,7 @@ code {
   line-height: 19px;
   text-transform: capitalize;
   color: #fff;
-  margin: 0 0 2px 0px;
+  margin: 0 0 2px 0;
 }
 
 .feed-container__time {
@@ -292,7 +279,6 @@ code {
   font-size: 12.8px;
   line-height: 19px;
   color: #656565;
-  /* display: inline-block; */
   overflow: hidden;
   color: #656565;
   -webkit-line-clamp: 2;
@@ -355,7 +341,7 @@ a:last-of-type .conversations-element__single-box {
 .single-conversation__interlocutorB-message {
   background-color: #fafafa;
   padding: 11px 25px;
-  border-radius: 0px 15px 15px 15px;
+  border-radius: 0 15px 15px 15px;
   max-width: 70%;
 }
 
@@ -376,16 +362,14 @@ a:last-of-type .conversations-element__single-box {
 .add__img-preview_container {
   width: 100%;
   height: 288px;
-  /* background-size: cover;
-  background-position: center; */
-  box-shadow: 0px 7px 20px #c4c4c4;
+  box-shadow: 0 7px 20px #c4c4c4;
   border-radius: 20px;
   padding: 13px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 45px;
+  margin: 15px 0 45px 0;
 }
 
 .add__img-preview_container input {
@@ -475,7 +459,7 @@ a:last-of-type .conversations-element__single-box {
 }
 
 .single-user__profile-picture {
-  filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.25));
   width: 120%;
   height: 120%;
   transform: rotate(-45deg);
@@ -574,7 +558,6 @@ a:last-of-type .conversations-element__single-box {
 }
 
 .single-user__photo {
-  /* background-image: url(https://resizing.flixster.com/8DUmZAreHkhvV2ARGjPfH9ehlks=/fit-in/1152x864/v2/https://flxt.tmsimg.com/assets/p14459143_e_h9_aa.jpg); */
   width: 156px;
   height: 138px;
   background-repeat: no-repeat;

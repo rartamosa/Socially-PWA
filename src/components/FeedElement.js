@@ -14,12 +14,11 @@ const FeedElement = ({
   likes,
   feedId,
 }) => {
-  const accessToken = useSelector((store) => store.user.accessToken);
   const loggedUserId = useSelector((store) => store.user.userId);
   const dispatch = useDispatch();
 
-  const toggleLikes = (accessToken, feedId) => {
-    dispatch(toggleLikeFeed(accessToken, feedId));
+  const toggleLikes = (feedId) => {
+    dispatch(toggleLikeFeed(feedId));
   };
 
   return (
@@ -42,7 +41,7 @@ const FeedElement = ({
         </div>
       </div>
       <div
-        onClick={() => toggleLikes(accessToken, feedId)}
+        onClick={() => toggleLikes(feedId)}
         className="feed-container__likes-container"
       >
         {likes.includes(loggedUserId) || likes.length < 0 ? (

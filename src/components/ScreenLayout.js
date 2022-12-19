@@ -16,6 +16,7 @@ import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { SecondaryButton } from "../styled-components/Buttons";
 
 import user from "../reducers/user";
+import { CONVERSATIONS, PEOPLE, ADD } from "../utils/commons";
 
 const ScreenLayout = () => {
   const userId = useSelector((store) => store.user.userId);
@@ -34,18 +35,18 @@ const ScreenLayout = () => {
   const generateBackgroundClassName = () => {
     if (location.pathname === "/") {
       return "screen-layout__background_feed";
-    } else if (location.pathname === "/conversations") {
+    } else if (location.pathname === `/${CONVERSATIONS}`) {
       return "screen-layout__background_messages";
-    } else if (location.pathname === "/people") {
+    } else if (location.pathname === `/${PEOPLE}`) {
       return "screen-layout__background_people";
     } else if (
       location.pathname.includes("people") &&
-      location.pathname !== "/people"
+      location.pathname !== `/${PEOPLE}`
     ) {
       return "screen-layout__background_myprofile";
     } else if (
       location.pathname.includes("conversations") &&
-      location.pathname !== "/conversations"
+      location.pathname !== `/${CONVERSATIONS}`
     ) {
       return "screen-layout__background_singlemessage";
     }
@@ -55,18 +56,21 @@ const ScreenLayout = () => {
     if (location.pathname === "/" && icon === "feed") {
       return "#7DB9B3";
     } else if (
-      location.pathname === "/conversations" &&
+      location.pathname === `/${CONVERSATIONS}` &&
       icon === "conversations"
     ) {
       return "#7DB9B3";
     } else if (
-      (location.pathname === "/people" && icon === "people") ||
-      (location.pathname !== `/people/${userId}` &&
+      (location.pathname === `/${PEOPLE}` && icon === "people") ||
+      (location.pathname !== `/${PEOPLE}/${userId}` &&
         location.pathname.includes("people") &&
         icon === "people")
     ) {
       return "#7DB9B3";
-    } else if (location.pathname === `/people/${userId}` && icon === "userId") {
+    } else if (
+      location.pathname === `/${PEOPLE}/${userId}` &&
+      icon === "userId"
+    ) {
       return "#7DB9B3";
     } else {
       return "#000";
@@ -108,22 +112,22 @@ const ScreenLayout = () => {
               />
             }
             component={Link}
-            to="/conversations"
+            to={`/${CONVERSATIONS}`}
           />
           <BottomNavigationAction
             icon={<AddCircleOutlineIcon />}
             component={Link}
-            to="/add"
+            to={`/${ADD}`}
           />
           <BottomNavigationAction
             icon={<PeopleOutlineIcon htmlColor={generateIconColor("people")} />}
             component={Link}
-            to="/people"
+            to={`/${PEOPLE}`}
           />
           <BottomNavigationAction
             icon={<AccountCircleIcon htmlColor={generateIconColor("userId")} />}
             component={Link}
-            to={`/people/${userId}`}
+            to={`/${PEOPLE}/${userId}`}
           />
         </BottomNavigation>
       </Paper>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { BASE_API_URL } from "../utils/commons";
+import { BASE_API_URL, USER, USERS } from "../utils/commons";
 
 const profiles = createSlice({
   name: "profiles",
@@ -25,31 +25,31 @@ const profiles = createSlice({
 
 export default profiles;
 
-export const getProfiles = (accessToken) => {
+export const getProfiles = () => {
   return (dispatch, getState) => {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
     };
-    fetch(`${BASE_API_URL}/users`, options)
+    fetch(`${BASE_API_URL}/${USERS}`, options)
       .then((res) => res.json())
       .then((data) => dispatch(profiles.actions.setProfiles(data.response)));
   };
 };
 
-export const followToggle = (userId, accessToken, mode) => {
+export const followToggle = (userId, mode) => {
   return (dispatch, getState) => {
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        Authorization: getState().user.accessToken,
       },
     };
-    fetch(`${BASE_API_URL}/user/${mode}/${userId}`, options)
+    fetch(`${BASE_API_URL}/${USER}/${mode}/${userId}`, options)
       .then((res) => res.json())
       .then((data) => dispatch(profiles.actions.setFollow(data.response)));
   };

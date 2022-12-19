@@ -21,11 +21,9 @@ const ConversationsElement = ({
         <div>
           <p className="screen-layout__user-name">{interlocutor}</p>
 
-          {messageToShow !== undefined && (
-            <span className="messages-container__user-message">
-              {messageToShow}
-            </span>
-          )}
+          <span className="messages-container__user-message">
+            {messageToShow}
+          </span>
         </div>
       </div>
     </Link>

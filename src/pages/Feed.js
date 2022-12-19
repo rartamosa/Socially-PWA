@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getFeed } from "../reducers/feed";
-
 import FeedElement from "../components/FeedElement";
+
+import { getFeed } from "../reducers/feed";
 
 const Feed = () => {
   const accessToken = useSelector((store) => store.user.accessToken);
@@ -12,9 +12,9 @@ const Feed = () => {
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(getFeed(accessToken));
+      dispatch(getFeed());
     }
-  }, [accessToken]);
+  }, [accessToken, dispatch]);
 
   return (
     <div className="screen-layout__screen">
