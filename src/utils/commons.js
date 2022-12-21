@@ -1,4 +1,4 @@
-export const BASE_API_URL = "https://socially-api.onrender.com";
+export const BASE_API_URL = "https://socially-api.fly.dev";
 
 export const SIGN_IN = "signin";
 export const SIGN_UP = "signup";
